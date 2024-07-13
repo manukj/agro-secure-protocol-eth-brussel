@@ -3,6 +3,7 @@
 // import { useWalletClient } from "wagmi";
 // import { useScaffoldContract } from "~~/hooks/scaffold-eth";
 import ConnectWallet from "./components/connect_wallet";
+import WorldcoinVerificationDialog from "./components/worldid_verification_dialog";
 import { useAccount } from "wagmi";
 
 const LoginScreen = () => {
@@ -49,6 +50,12 @@ const LoginScreen = () => {
       ) : (
         <ConnectWallet />
       )}
+      <WorldcoinVerificationDialog
+        appId={process.env.NEXT_PUBLIC_WLD_APP_ID as `app_${string}`}
+        action={process.env.NEXT_PUBLIC_WLD_ACTION!}
+        signal={"pass_addr_here"}
+        onSuccess={result => console.log(result)}
+      />
     </div>
   );
 };
