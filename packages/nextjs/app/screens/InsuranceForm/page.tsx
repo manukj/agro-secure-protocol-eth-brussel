@@ -1,10 +1,12 @@
+"use client";
+
 import React, { useState } from "react";
 
 const InsuranceDetails = () => {
-  const [farmSize, setFarmSize] = useState(100);
+  const [farmSize, setFarmSize] = useState(2);
   const [location, setLocation] = useState("");
-  const minFarmSize = 100;
-  const maxFarmSize = 2000;
+  const minFarmSize = 1;
+  const maxFarmSize = 20;
   const [displayedFarmSize, setDisplayedFarmSize] = useState(farmSize);
 
   const handleRangeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,9 +22,10 @@ const InsuranceDetails = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="flex items-center justify-center min-h-screen relative">
+      <img src="/insurance_logo.svg" className="absolute top-40 left-10 h-80 " />
       <div className="card bg-base-100 w-100 shadow-xl rounded-md">
-        <h1 className="text-2xl font-bold text-center mt-3">Insurance details</h1>
+        <h1 className="text-2xl font-bold text-center mt-3">Insurance Form</h1>
         <div className="card-body">
           <div className="flex flex-col">
             <p>Farm Size: {displayedFarmSize}</p>

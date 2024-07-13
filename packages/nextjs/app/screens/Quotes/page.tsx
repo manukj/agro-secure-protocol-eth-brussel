@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 
 const Quotes = () => {
@@ -19,7 +21,7 @@ const Quotes = () => {
     }, 2000);
   }, []);
   return (
-    <div className="flex flex-col items-center min-h-screen bg-base-200 mt-4 rounded-md">
+    <div className="flex flex-col items-center min-h-screen bg-base-200 mt-4 rounded-md justify-center">
       <h1 className="text-4xl font-bold mb-6">Choose Your Plan</h1>
       <div className="flex flex-row justify-center gap-4">
         <div className="card bg-base-100 w-96 shadow-xl">
