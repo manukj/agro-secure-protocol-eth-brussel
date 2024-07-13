@@ -28,16 +28,50 @@ contract WeatherRiskFunctionsConsumer is FunctionsClient, ConfirmedOwner {
 		bytes err
 	);
 
-	// Router address - Hardcoded for Optimism
+	// Router address - Hardcoded for Sepolia
 	// Check to get the router address for your supported network https://docs.chain.link/chainlink-functions/supported-networks
 	address router = 0xC17094E3A1348E5C7544D4fF8A36c28f2C6AAE28;
 
 	// JavaScript source code
 	// Fetch weather and soil data and calculate risk factor.
+	string source =
+		"const token = args[0];"
+        "const locationid = args[1];"
+        "const startdate = args[2];"
+        "const enddate = args[3];"
+        "const datatypeid = 'TAVG';"
+        "const appid = args[4];"
+        "const cityName = args[5];"
+        "const url = `https://www.ncei.noaa.gov/cdo-web/api/v2/data?datasetid=GHCND&locationid=${locationid}&startdate=${startdate}&enddate=${enddate}&datatypeid=${datatypeid}&limit=30`;"
+        "const noaaResponse = await Functions.makeHttpRequest({url: url,headers: {'token': token,},});"
+        "if (noaaResponse.error) {throw Error('NOAA request failed');}"
+        "const weatherData = noaaResponse.data;"
+        "function calculateWeatherRisk(data) {const extremeHigh = 35;const extremeLow = 0;let extremeCount = 0;for (const entry of data.results) {const value = entry.value;if (value > extremeHigh || value < extremeLow) {extremeCount += 1;}}const totalEvents = data.results.length;const riskFactor = totalEvents > 0 ? extremeCount / totalEvents : 0;return riskFactor;}"
+        "const weatherRiskFactor = calculateWeatherRisk(weatherData);"
+        "const cityResponse = await Functions.makeHttpRequest({url: `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${appid}`,});"
+        "if (cityResponse.error) {throw Error('City request failed');}"
+        "const city = cityResponse.data[0];"
+        "const lat = city.lat;"
+        "const lon = city.lon;"
+        "const soilUrl = `https://rest.isric.org/soilgrids/v2.0/properties/query?lon=${lon}&lat=${lat}&property=clay&property=sand&property=silt&depth=0-5cm&depth=0-30cm&depth=5-15cm&value=mean`;"
+        "const soilResponse = await Functions.makeHttpRequest({url: soilUrl,});"
+        "if (soilResponse.error) {throw Error('Soil properties request failed');}"
+        "const soilData = soilResponse.data;"
+        "const weightClay = 0.3;"
+        "const weightSand = 0.4;"
+        "const weightSilt = 0.3;"
+        "function extractMeanValue(response, layerName) {const layer = response.properties.layers.find(l => l.name === layerName);if (layer) {const depthRange = layer.depths.find(d => d.label === '0-5cm');return depthRange && depthRange.values.mean ? depthRange.values.mean / layer.unit_measure.d_factor : 0;}return 0;}"
+        "const clayMean = extractMeanValue(soilData, 'clay');"
+        "const sandMean = extractMeanValue(soilData, 'sand');"
+        "const siltMean = extractMeanValue(soilData, 'silt');"
+        "const soilFactor=(weightClay*clayMean)+(weightSand*sandMean)+(weightSilt *siltMean);"
+        "const riskFactor = 100 * (weatherRiskFactor + soilFactor);"
+		"return Functions.encodeUint256(Math.round(riskFactor));";
 
+	// Callback gas limit
 	uint32 gasLimit = 300000;
 
-	// donID - Hardcoded for Optimism
+	// donID - Hardcoded for Sepolia
 	// Check to get the donID for your supported network https://docs.chain.link/chainlink-functions/supported-networks
 	bytes32 donID =
 		0x66756e2d6f7074696d69736d2d7365706f6c69612d3100000000000000000000;
@@ -57,7 +91,6 @@ contract WeatherRiskFunctionsConsumer is FunctionsClient, ConfirmedOwner {
 	 * @return requestId The ID of the request
 	 */
 	function sendRequest(
-		string memory source,
 		uint64 subscriptionId,
 		string[] calldata args
 	) external onlyOwner returns (bytes32 requestId) {

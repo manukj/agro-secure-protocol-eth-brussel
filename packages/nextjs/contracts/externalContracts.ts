@@ -14,7 +14,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const externalContracts = {
   11155420: {
     WeatherRiskFunctionsConsumer: {
-      address: "0xE6aFdC23cd91904c4c83Fe8057Ec72F1D3c54Aa9",
+      address: "0x61D178043F1998e1C2FBf378d438100b6f23095E",
       abi: [
         {
           inputs: [],
@@ -244,11 +244,6 @@ const externalContracts = {
         },
         {
           inputs: [
-            {
-              internalType: "string",
-              name: "source",
-              type: "string",
-            },
             {
               internalType: "uint64",
               name: "subscriptionId",
