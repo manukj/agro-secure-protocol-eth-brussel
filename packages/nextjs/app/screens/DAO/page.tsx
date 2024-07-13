@@ -25,7 +25,12 @@ const DAO: React.FC = () => {
       <div className="flex flex-row justify-around w-full max-w-4xl mt-4">
         <div className="flex flex-col items-center">
           <h1 className="text-2xl font-bold mb-4">Step 1</h1>
-          <ButtonComponent text="Connect Wallet" onClick={handleStep1Click} disabled={step1Completed} />
+          <ButtonComponent
+            text="Connect Wallet"
+            onClick={handleStep1Click}
+            disabled={step1Completed}
+            completed={step1Completed}
+          />
           <p>Connect your wallet to the platform</p>
         </div>
         <div className="flex flex-col items-center">
@@ -34,12 +39,18 @@ const DAO: React.FC = () => {
             text="Verify as Human"
             onClick={handleStep2Click}
             disabled={!step1Completed || step2Completed}
+            completed={step2Completed}
           />
           <p>Complete the verification process</p>
         </div>
         <div className="flex flex-col items-center">
           <h1 className="text-2xl font-bold mb-4">Step 3</h1>
-          <ButtonComponent text="Stake ETH" onClick={handleStep3Click} disabled={!step2Completed || step3Completed} />
+          <ButtonComponent
+            text="Stake ETH"
+            onClick={handleStep3Click}
+            disabled={!step2Completed || step3Completed}
+            completed={step3Completed}
+          />
           <p>Stake your ETH to become a DAO member</p>
         </div>
       </div>
