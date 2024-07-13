@@ -9,9 +9,9 @@ const Quotes = () => {
   const riskFactor = parseInt(searchParams.get("riskFactor") || "0") / 100;
   const baseFare = 100;
   const baseFareWithRisk = baseFare * riskFactor + baseFare;
-  const sliverAmount = (baseFareWithRisk / 12) * 1;
-  const goldAmount = (baseFareWithRisk / 12) * 0.9 * 2;
-  const platinumAmount = (baseFareWithRisk / 12) * 0.8 * 5;
+  const sliverAmount = ((baseFareWithRisk / 12) * 1) / 1000; // 1 year
+  const goldAmount = ((baseFareWithRisk / 12) * 0.9 * 2) / 1000; // 2 years
+  const platinumAmount = ((baseFareWithRisk / 12) * 0.8 * 5) / 1000; // 5 years
 
   // const { data: walletClient } = useWalletClient();
 
@@ -38,7 +38,10 @@ const Quotes = () => {
                 <p>
                   <span>1 year</span> Validity
                 </p>
-                <p className="text-4xl">${sliverAmount.toFixed(2)}/mo</p>
+                <div className="flex flex-row text-4xl place-items-center">
+                  {" "}
+                  {sliverAmount.toFixed(2)} <p className="ml-2 text-gray-500 text-2xl"> ETH / mo</p>
+                </div>
                 <p className="font-bold">Insurance Specifications: </p>
                 <ul>
                   <li>Insured Amount - {sliverAmount.toFixed(2)}</li>
@@ -62,7 +65,10 @@ const Quotes = () => {
                 <p>
                   <span>2 year</span> Validity
                 </p>
-                <p className="text-4xl">${goldAmount.toFixed(2)}/mo</p>
+                <div className="flex flex-row text-4xl place-items-center">
+                  {" "}
+                  {goldAmount.toFixed(2)} <p className="ml-2 text-gray-500 text-2xl"> ETH / mo</p>
+                </div>
                 <p className="font-bold">Insurance Specifications: </p>
                 <ul>
                   <li>Insured Amount - {goldAmount.toFixed(2)}</li>
@@ -86,7 +92,10 @@ const Quotes = () => {
                 <p>
                   <span>5 year</span> Validity
                 </p>
-                <p className="text-4xl">${platinumAmount.toFixed(2)}/mo</p>
+                <div className="flex flex-row text-4xl place-items-center">
+                  {" "}
+                  {platinumAmount.toFixed(2)} <p className="ml-2 text-gray-500 text-2xl"> ETH / mo</p>
+                </div>
                 <p className="font-bold">Insurance Specifications: </p>
                 <ul>
                   <li>Insured Amount - {platinumAmount.toFixed(2)}</li>
