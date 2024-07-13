@@ -1,4 +1,23 @@
+import { useEffect, useState } from "react";
+
 const Quotes = () => {
+  const baseFare = 100;
+  let riskFactor;
+  let actuallAmount;
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    // mock api call add timer to show loading
+    setTimeout(() => {
+      riskFactor = Math.random() * 100; // decimal point
+      actuallAmount = baseFare * riskFactor;
+      console.log("Risk Factor: ", riskFactor);
+      console.log("Actuall Amount: ", actuallAmount);
+      setIsLoading(false);
+      console.log("isLoading", isLoading);
+    }, 2000);
+  }, []);
   return (
     <div className="flex flex-col items-center min-h-screen bg-base-200 mt-4 rounded-md">
       <h1 className="text-4xl font-bold mb-6">Choose Your Plan</h1>
@@ -15,7 +34,7 @@ const Quotes = () => {
             <p className="text-4xl">$10/mo</p>
             <p className="font-bold">Insured details: </p>
             <ul>
-              <li>Crop Type </li>
+              <li>Crop Type</li>
               <li>Farm Location</li>
               <li>Farm Size</li>
             </ul>

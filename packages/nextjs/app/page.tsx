@@ -1,10 +1,10 @@
 "use client";
 
-import Quotes from "./screens/Quotes/page";
+import LoginScreen from "./screens/login/page";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
-  return <Quotes />;
+  return <LoginScreen />;
 };
 
 export default Home;

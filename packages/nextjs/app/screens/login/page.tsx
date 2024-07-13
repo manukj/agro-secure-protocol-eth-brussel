@@ -1,6 +1,10 @@
 "use client";
 
+import { useAccount } from "wagmi";
+
 const LoginScreen = () => {
+  const { address } = useAccount();
+  console.log("address", address);
   return (
     <div className="flex flex-col items-center justify-center min-h-screen text-center">
       <figure>
