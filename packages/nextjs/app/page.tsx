@@ -1,10 +1,10 @@
 "use client";
 
-import LoginScreen from "./screens/login/page";
+import DAO from "./screens/DAO/page";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
-  return <LoginScreen />;
+  return <DAO />;
 };
 
 export default Home;

@@ -16,7 +16,7 @@ const InsuranceDetails = () => {
   };
 
   const handleLocationChange = (e: { target: { value: React.SetStateAction<string> } }) => {
-    setLocation(e.target.value); // Update location state when user types in the location input
+    setLocation(e.target.value);
   };
 
   return (
