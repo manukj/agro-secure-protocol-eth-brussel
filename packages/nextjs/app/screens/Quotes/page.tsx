@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { useWalletClient } from "wagmi";
 import { useSearchParams } from "next/navigation";
 
@@ -16,7 +16,10 @@ const Quotes = () => {
   // const { data: walletClient } = useWalletClient();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  setIsLoading(false);
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
 
   return (
     <>
