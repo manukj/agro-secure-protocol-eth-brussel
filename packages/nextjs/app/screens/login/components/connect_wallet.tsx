@@ -1,15 +1,10 @@
-import Lottie from "lottie-react";
-import wallet from "~~/components/assets/wallet.json";
+import { RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
 
 const ConnectWallet = () => {
-  const celebrateStyle = {
-    height: 600,
-    width: 600,
-  };
   return (
-    <div className="h-full w-full flex-col bg-red-100 place-content-center place-items-center place-self-center">
-      <h1>Connect Wallet</h1>
-      <Lottie animationData={wallet} style={celebrateStyle} />
+    <div className="flex flex-col place-content-center place-items-center place-self-center ">
+      <img src="/wallet_connect.gif" className="justify-center" style={{ width: "100px", height: "100px" }} />
+      <RainbowKitCustomConnectButton />
     </div>
   );
 };
