@@ -1,10 +1,10 @@
 "use client";
 
-import InsuranceForm from "./screens/InsuranceForm/page";
+import Quotes from "./screens/Quotes/page";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
-  return <InsuranceForm />;
+  return <Quotes />;
 };
 
 export default Home;
