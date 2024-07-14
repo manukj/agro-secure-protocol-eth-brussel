@@ -25,7 +25,11 @@ const WorldcoinVerificationDialog: React.FC<WorldcoinVerificationProps> = ({ app
       verification_level={VerificationLevel.Orb}
       signal={signal}
     >
-      {({ open }) => <button onClick={open}>Verify with World ID</button>}
+      {({ open }) => (
+        <button className="btn btn-primary w-30" onClick={open}>
+          Verify that you are a Human being
+        </button>
+      )}
     </IDKitWidget>
   );
 };
