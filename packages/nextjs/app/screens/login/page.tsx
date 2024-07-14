@@ -33,7 +33,7 @@ const LoginScreen = () => {
         <img src="/farm.png" width={400} height={200} />
       </figure>
       <div className="flex items-center justify-center">
-        <h1 className="text-4xl font-bold">Agro Chain Protocol</h1>
+        <img src="/logo.png" className=" w-1/4" />
       </div>
       {address ? (
         <div className="flex flex-col items-center text-center">
