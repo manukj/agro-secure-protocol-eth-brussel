@@ -37,60 +37,62 @@ const DAO: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen p-8 place-content-center">
-      <h1 className="text-2xl font-bold mb-4">Become a DAO Member</h1>
-      <p className="text-lg mb-8 text-center">You can become a DAO member, easily and safely in three simple steps</p>
-      <div className="flex flex-row justify-around w-full max-w-4xl mt-4">
-        <div className="flex flex-col items-center">
-          <h1 className="text-2xl font-bold mb-4">Step 1</h1>
-          {address ? (
+    <div className=" h-screen w-screen">
+      <div className="flex flex-col items-center min-h-screen p-8 place-content-center">
+        <h1 className="text-2xl font-bold mb-4">Become a Authorizer Member</h1>
+        <p className="text-lg mb-8 text-center">You can become a DAO member, easily and safely in three simple steps</p>
+        <img src="/authority.svg" className=" top-40 left-10 h-80 " />
+        <div className="flex flex-row justify-around w-full max-w-4xl mt-4">
+          <div className="flex flex-col items-center">
+            <h1 className="text-2xl font-bold mb-4">Step 1</h1>
+            {address ? (
+              <ButtonComponent
+                text="Connect Wallet"
+                onClick={() => {
+                  console.log(" coonect to wallet");
+                }}
+                disabled={true}
+                completed={true}
+              />
+            ) : (
+              <ConnectWallet />
+            )}
+            <p>Connect your wallet to the platform</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <h1 className="text-2xl font-bold mb-4">Step 2</h1>
+            {step2Completed ? (
+              <ButtonComponent
+                text="Verify as Human"
+                onClick={() => {
+                  console.log("verify human");
+                }}
+                disabled={!step1Completed || step2Completed}
+                completed={step2Completed}
+              />
+            ) : (
+              <WorldcoinVerificationDialog
+                appId={process.env.NEXT_PUBLIC_WLD_APP_ID as `app_${string}`}
+                action={process.env.NEXT_PUBLIC_WLD_ACTION!}
+                signal={address!}
+                onSuccess={result => {
+                  console.log("📡 Verified", result);
+                  setStep2Completed(true);
+                }}
+              />
+            )}
+            <p>Verify your humanity</p>
+          </div>
+          <div className="flex flex-col items-center">
+            <h1 className="text-2xl font-bold mb-4">Step 3</h1>
             <ButtonComponent
-              text="Connect Wallet"
-              onClick={() => {
-                console.log(" coonect to wallet");
-              }}
-              disabled={true}
-              completed={true}
+              text="Stake ETH"
+              onClick={stakeETH}
+              disabled={!step2Completed || step3Completed}
+              completed={step3Completed}
             />
-          ) : (
-            <ConnectWallet />
-          )}
-          <p>Connect your wallet to the platform</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <h1 className="text-2xl font-bold mb-4">Step 2</h1>
-          {step2Completed ? (
-            <ButtonComponent
-              text="Verify as Human"
-              onClick={() => {
-                console.log("veryify human");
-              }}
-              disabled={!step1Completed || step2Completed}
-              completed={step2Completed}
-            />
-          ) : (
-            <WorldcoinVerificationDialog
-              appId={process.env.NEXT_PUBLIC_WLD_APP_ID as `app_${string}`}
-              action={process.env.NEXT_PUBLIC_WLD_ACTION!}
-              signal={address!}
-              onSuccess={result => {
-                console.log("📡 Verified", result);
-                setStep2Completed(true);
-              }}
-            />
-          )}
-          <p>Verify your Human</p>
-        </div>
-        <div className="flex flex-col items-center">
-          <h1 className="text-2xl font-bold mb-4">Step 3</h1>
-
-          <ButtonComponent
-            text="Stake ETH"
-            onClick={stakeETH}
-            disabled={!step2Completed || step3Completed}
-            completed={step3Completed}
-          />
-          <p>Stake your ETH to become a DAO member</p>
+            <p>Stake your ETH to become a DAO member</p>
+          </div>
         </div>
       </div>
     </div>
