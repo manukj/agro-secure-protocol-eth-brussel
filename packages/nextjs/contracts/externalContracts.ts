@@ -282,7 +282,7 @@ const externalContracts = {
       ],
     },
     InsuranceManager: {
-      address: "0x86787b859A83BBA59c1Fec17CB5dba3102CF4718",
+      address: "0xacAdeD0792E374950301aeb83679c2559FA62049",
       abi: [
         {
           inputs: [],
@@ -294,9 +294,9 @@ const externalContracts = {
           inputs: [
             {
               indexed: true,
-              internalType: "uint256",
-              name: "id",
-              type: "uint256",
+              internalType: "address",
+              name: "insuredAddress",
+              type: "address",
             },
             {
               indexed: false,
@@ -313,9 +313,9 @@ const externalContracts = {
           inputs: [
             {
               indexed: true,
-              internalType: "uint256",
-              name: "id",
-              type: "uint256",
+              internalType: "address",
+              name: "insuredAddress",
+              type: "address",
             },
             {
               indexed: false,
@@ -344,9 +344,9 @@ const externalContracts = {
           inputs: [
             {
               indexed: true,
-              internalType: "uint256",
-              name: "id",
-              type: "uint256",
+              internalType: "address",
+              name: "insuredAddress",
+              type: "address",
             },
             {
               indexed: false,
@@ -373,9 +373,9 @@ const externalContracts = {
         {
           inputs: [
             {
-              internalType: "uint256",
-              name: "_id",
-              type: "uint256",
+              internalType: "address",
+              name: "_insuredAddress",
+              type: "address",
             },
             {
               internalType: "uint256",
@@ -396,9 +396,9 @@ const externalContracts = {
         {
           inputs: [
             {
-              internalType: "uint256",
-              name: "_id",
-              type: "uint256",
+              internalType: "address",
+              name: "_insuredAddress",
+              type: "address",
             },
           ],
           name: "checkValidity",
@@ -415,9 +415,9 @@ const externalContracts = {
         {
           inputs: [
             {
-              internalType: "uint256",
-              name: "_id",
-              type: "uint256",
+              internalType: "address",
+              name: "_insuredAddress",
+              type: "address",
             },
           ],
           name: "claimInsurance",
@@ -428,9 +428,9 @@ const externalContracts = {
         {
           inputs: [
             {
-              internalType: "uint256",
-              name: "_id",
-              type: "uint256",
+              internalType: "address",
+              name: "_insuredAddress",
+              type: "address",
             },
           ],
           name: "getInsurance",
@@ -438,9 +438,9 @@ const externalContracts = {
             {
               components: [
                 {
-                  internalType: "uint256",
-                  name: "id",
-                  type: "uint256",
+                  internalType: "address",
+                  name: "insuredAddress",
+                  type: "address",
                 },
                 {
                   internalType: "uint256",
@@ -484,17 +484,17 @@ const externalContracts = {
         {
           inputs: [
             {
-              internalType: "uint256",
+              internalType: "address",
               name: "",
-              type: "uint256",
+              type: "address",
             },
           ],
           name: "insurances",
           outputs: [
             {
-              internalType: "uint256",
-              name: "id",
-              type: "uint256",
+              internalType: "address",
+              name: "insuredAddress",
+              type: "address",
             },
             {
               internalType: "uint256",
@@ -533,9 +533,9 @@ const externalContracts = {
         {
           inputs: [
             {
-              internalType: "uint256",
-              name: "_id",
-              type: "uint256",
+              internalType: "address",
+              name: "_insuredAddress",
+              type: "address",
             },
           ],
           name: "invalidateInsurance",
@@ -559,9 +559,9 @@ const externalContracts = {
         {
           inputs: [
             {
-              internalType: "uint256",
-              name: "_id",
-              type: "uint256",
+              internalType: "address",
+              name: "_insuredAddress",
+              type: "address",
             },
             {
               internalType: "uint256",
@@ -577,9 +577,9 @@ const externalContracts = {
         {
           inputs: [
             {
-              internalType: "uint256",
-              name: "_id",
-              type: "uint256",
+              internalType: "address",
+              name: "_insuredAddress",
+              type: "address",
             },
             {
               internalType: "uint256",

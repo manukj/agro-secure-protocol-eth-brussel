@@ -2,9 +2,21 @@
 
 import { useEffect, useState } from "react";
 // import { useWalletClient } from "wagmi";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useAccount } from "wagmi";
+import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
+
+enum Plan {
+  SILVER = "SILVER",
+  GOLD = "GOLD",
+  PLATINUM = "PLATINUM",
+}
 
 const Quotes = () => {
+  const { writeContractAsync: writeYourContractAsync } = useScaffoldWriteContract("InsuranceManager");
+
+  const router = useRouter();
+  const { address } = useAccount();
   const searchParams = useSearchParams();
   const riskFactor = parseInt(searchParams.get("riskFactor") || "0") / 100;
   const baseFare = 1000;
@@ -15,14 +27,34 @@ const Quotes = () => {
   const sliverInsurredAmount = baseFareWithRisk * 1;
   const goldInsurredAmount = baseFareWithRisk * 2;
   const platinumInsurredAmount = baseFareWithRisk * 5;
-
-  // const { data: walletClient } = useWalletClient();
-
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setIsLoading(false);
   }, []);
+
+  const handlePurchase = async (plan: Plan) => {
+    console.log("address", address);
+
+    const insuranceAmount =
+      plan === Plan.SILVER ? sliverInsurredAmount : plan === Plan.GOLD ? goldInsurredAmount : platinumInsurredAmount;
+
+    const validityPeriod = plan === Plan.SILVER ? 1 : plan === Plan.GOLD ? 2 : 5;
+
+    console.log("data args", BigInt(insuranceAmount), BigInt(validityPeriod));
+    console.log("datBigInt(insuranceAmount)a args", BigInt(insuranceAmount));
+    try {
+      await writeYourContractAsync({
+        functionName: "addNewInsurance",
+        args: [address!, BigInt(insuranceAmount), BigInt(validityPeriod)],
+        value: BigInt(insuranceAmount),
+      });
+      setIsLoading(false);
+      router.push("/");
+    } catch (error) {
+      console.log("error while calling the APi", error);
+    }
+  };
 
   return (
     <>
@@ -56,7 +88,14 @@ const Quotes = () => {
                   <li>Basic agronomy advice</li>
                 </ul>
               </div>
-              <button className="btn btn-active btn-primary">Purchase</button>
+              <button
+                className="btn btn-active btn-primary"
+                onClick={() => {
+                  handlePurchase(Plan.SILVER);
+                }}
+              >
+                Purchase
+              </button>
             </div>
 
             <div className="card bg-base-100 w-96 shadow-xl">
@@ -83,7 +122,14 @@ const Quotes = () => {
                   <li>Replanting coverage</li>
                 </ul>
               </div>
-              <button className="btn btn-active btn-primary">Purchase</button>
+              <button
+                className="btn btn-active btn-primary"
+                onClick={() => {
+                  handlePurchase(Plan.GOLD);
+                }}
+              >
+                Purchase
+              </button>
             </div>
 
             <div className="card bg-base-100 w-96 shadow-xl">
@@ -110,7 +156,14 @@ const Quotes = () => {
                   <li>Price protection against market fluctuations</li>
                 </ul>
               </div>
-              <button className="btn btn-active btn-primary">Purchase</button>
+              <button
+                className="btn btn-active btn-primary"
+                onClick={() => {
+                  handlePurchase(Plan.PLATINUM);
+                }}
+              >
+                Purchase
+              </button>
             </div>
           </div>
         </div>

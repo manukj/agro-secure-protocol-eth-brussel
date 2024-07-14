@@ -12,7 +12,7 @@ const deployInsuranceManager = async (hre: HardhatRuntimeEnvironment) => {
   });
 
   const insuranceContract = await hre.ethers.getContract<Contract>("InsuranceManager", deployer);
-  console.log("👋 InsuranceManager deployed at :", await insuranceContract.owner());
+  console.log("👋 InsuranceManager deployed by :", await insuranceContract.owner());
   console.log("👋 InsuranceManager deployed at :", await insuranceContract.getAddress());
 };
 

@@ -4,7 +4,7 @@ pragma solidity ^0.8.19;
 contract InsuranceManager {
 
     struct Insured {
-        uint256 id;
+        address insuredAddress;
         uint256 insuranceAmount;
         uint256 premiumPaid;
         uint256 validityPeriod;
@@ -13,12 +13,12 @@ contract InsuranceManager {
         bool isClaimed;
     }
 
-    mapping(uint256 => Insured) public insurances;
+    mapping(address => Insured) public insurances;
     address public owner;
 
-    event NewInsurance(uint256 indexed id, uint256 insuranceAmount, uint256 premiumPaid, uint256 validityPeriod);
-    event InsuranceUpdated(uint256 indexed id, uint256 insuranceAmount, uint256 premiumPaid, uint256 validityPeriod);
-    event InsuranceClaimed(uint256 indexed id, uint256 insuranceAmount);
+    event NewInsurance(address indexed insuredAddress, uint256 insuranceAmount, uint256 premiumPaid, uint256 validityPeriod);
+    event InsuranceUpdated(address indexed insuredAddress, uint256 insuranceAmount, uint256 premiumPaid, uint256 validityPeriod);
+    event InsuranceClaimed(address indexed insuredAddress, uint256 insuranceAmount);
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Not the contract owner");
@@ -29,11 +29,11 @@ contract InsuranceManager {
         owner = msg.sender;
     }
 
-    function addNewInsurance(uint256 _id, uint256 _insuranceAmount, uint256 _validityPeriod) public payable {
-        require(insurances[_id].id == 0, "Insurance ID already exists");
+    function addNewInsurance(address _insuredAddress, uint256 _insuranceAmount, uint256 _validityPeriod) public payable {
+        require(insurances[_insuredAddress].insuredAddress == address(0), "Insurance already exists for this address");
 
-        insurances[_id] = Insured({
-            id: _id,
+        insurances[_insuredAddress] = Insured({
+            insuredAddress: _insuredAddress,
             insuranceAmount: _insuranceAmount,
             premiumPaid: msg.value,
             validityPeriod: _validityPeriod,
@@ -42,55 +42,55 @@ contract InsuranceManager {
             isClaimed: false
         });
 
-        emit NewInsurance(_id, _insuranceAmount, msg.value, _validityPeriod);
+        emit NewInsurance(_insuredAddress, _insuranceAmount, msg.value, _validityPeriod);
     }
 
-    function getInsurance(uint256 _id) public view returns (Insured memory) {
-        require(insurances[_id].id != 0, "Insurance not found");
-        return insurances[_id];
+    function getInsurance(address _insuredAddress) public view returns (Insured memory) {
+        require(insurances[_insuredAddress].insuredAddress != address(0), "Insurance not found");
+        return insurances[_insuredAddress];
     }
 
-    function updateInsurance(uint256 _id, uint256 _insuranceAmount, uint256 _validityPeriod) public {
-        require(insurances[_id].id != 0, "Insurance not found");
+    function updateInsurance(address _insuredAddress, uint256 _insuranceAmount, uint256 _validityPeriod) public {
+        require(insurances[_insuredAddress].insuredAddress != address(0), "Insurance not found");
 
-        insurances[_id].insuranceAmount = _insuranceAmount;
-        insurances[_id].validityPeriod = _validityPeriod;
+        insurances[_insuredAddress].insuranceAmount = _insuranceAmount;
+        insurances[_insuredAddress].validityPeriod = _validityPeriod;
 
-        emit InsuranceUpdated(_id, _insuranceAmount, insurances[_id].premiumPaid, _validityPeriod);
+        emit InsuranceUpdated(_insuredAddress, _insuranceAmount, insurances[_insuredAddress].premiumPaid, _validityPeriod);
     }
 
-    function checkValidity(uint256 _id) public view returns (bool) {
-        require(insurances[_id].id != 0, "Insurance not found");
-        Insured memory insurance = insurances[_id];
+    function checkValidity(address _insuredAddress) public view returns (bool) {
+        require(insurances[_insuredAddress].insuredAddress != address(0), "Insurance not found");
+        Insured memory insurance = insurances[_insuredAddress];
         return insurance.isValid && (block.timestamp <= insurance.startTime + insurance.validityPeriod);
     }
 
-    function invalidateInsurance(uint256 _id) public {
-        require(insurances[_id].id != 0, "Insurance not found");
+    function invalidateInsurance(address _insuredAddress) public {
+        require(insurances[_insuredAddress].insuredAddress != address(0), "Insurance not found");
 
-        insurances[_id].isValid = false;
+        insurances[_insuredAddress].isValid = false;
     }
 
-    function renewInsurance(uint256 _id, uint256 _additionalValidityPeriod) public {
-        require(insurances[_id].id != 0, "Insurance not found");
-        require(insurances[_id].isValid, "Insurance is not valid");
+    function renewInsurance(address _insuredAddress, uint256 _additionalValidityPeriod) public {
+        require(insurances[_insuredAddress].insuredAddress != address(0), "Insurance not found");
+        require(insurances[_insuredAddress].isValid, "Insurance is not valid");
 
-        insurances[_id].validityPeriod += _additionalValidityPeriod;
+        insurances[_insuredAddress].validityPeriod += _additionalValidityPeriod;
     }
 
-    function claimInsurance(uint256 _id) public {
-        require(insurances[_id].id != 0, "Insurance not found");
-        require(insurances[_id].isValid, "Insurance is not valid");
-        require(!insurances[_id].isClaimed, "Insurance already claimed");
-        require(block.timestamp <= insurances[_id].startTime + insurances[_id].validityPeriod, "Insurance validity period has expired");
+    function claimInsurance(address _insuredAddress) public {
+        require(insurances[_insuredAddress].insuredAddress != address(0), "Insurance not found");
+        require(insurances[_insuredAddress].isValid, "Insurance is not valid");
+        require(!insurances[_insuredAddress].isClaimed, "Insurance already claimed");
+        require(block.timestamp <= insurances[_insuredAddress].startTime + insurances[_insuredAddress].validityPeriod, "Insurance validity period has expired");
 
-        insurances[_id].isClaimed = true;
-        insurances[_id].isValid = false;
+        insurances[_insuredAddress].isClaimed = true;
+        insurances[_insuredAddress].isValid = false;
 
         // Logic to transfer the insurance amount to the claimant can be added here.
-        // For example: payable(msg.sender).transfer(insurances[_id].insuranceAmount);
+        // For example: payable(_insuredAddress).transfer(insurances[_insuredAddress].insuranceAmount);
 
-        emit InsuranceClaimed(_id, insurances[_id].insuranceAmount);
+        emit InsuranceClaimed(_insuredAddress, insurances[_insuredAddress].insuranceAmount);
     }
 
     function withdraw() public onlyOwner {

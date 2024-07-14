@@ -1,16 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import ConnectWallet from "./components/connect_wallet";
 import WorldcoinVerificationDialog from "./components/worldid_verification_dialog";
 import { useAccount } from "wagmi";
 import { useAuthContext } from "~~/contexts/AuthContext";
 
 const LoginScreen = () => {
-  const { setVerifiedAddress } = useAuthContext();
+  const router = useRouter();
+  const { verifiedAddress, setVerifiedAddress } = useAuthContext();
   const { address, isConnecting } = useAccount();
   const [isLoading, setIsLoading] = useState(true);
-  const [isVerifiedUser, setVerifiedUser] = useState(false);
 
   useEffect(() => {
     if (!isConnecting) {
@@ -36,11 +37,18 @@ const LoginScreen = () => {
       </div>
       {address ? (
         <div className="flex flex-col items-center text-center">
-          {isVerifiedUser ? (
+          {verifiedAddress ? (
             <div className="flex flex-col items-center text-center">
               <p>Verfiied As Human </p>
               <div className="card-actions justify-end">
-                <div className="btn btn-primary w-30">Get Insured</div>
+                <div
+                  className="btn btn-primary w-30"
+                  onClick={() => {
+                    router.push("/screens/insuranceform");
+                  }}
+                >
+                  Get Insured
+                </div>
                 <div className="btn border-black w-30">Claim</div>
               </div>
             </div>
@@ -51,7 +59,6 @@ const LoginScreen = () => {
               signal={address}
               onSuccess={result => {
                 console.log("📡 Verified", result);
-                setVerifiedUser(true);
                 setVerifiedAddress(address);
               }}
             />
