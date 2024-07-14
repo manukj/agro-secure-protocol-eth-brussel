@@ -1,0 +1,41 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/interfaces/IWorldID.sol": {
+      "content": "//SPDX-License-Identifier: MIT\npragma solidity ^0.8.10;\n\ninterface IWorldID {\n\t/// @notice Reverts if the zero-knowledge proof is invalid.\n\t/// @param root The of the Merkle tree\n\t/// @param groupId The id of the Semaphore group\n\t/// @param signalHash A keccak256 hash of the Semaphore signal\n\t/// @param nullifierHash The nullifier hash\n\t/// @param externalNullifierHash A keccak256 hash of the external nullifier\n\t/// @param proof The zero-knowledge proof\n\t/// @dev  Note that a double-signaling check is not included here, and should be carried by the caller.\n\tfunction verifyProof(\n\t\tuint256 root,\n\t\tuint256 groupId,\n\t\tuint256 signalHash,\n\t\tuint256 nullifierHash,\n\t\tuint256 externalNullifierHash,\n\t\tuint256[8] calldata proof\n\t) external view;\n}\n"
+    },
+    "contracts/utilities/ByteHasher.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.10;\n\nlibrary ByteHasher {\n\t/// @dev Creates a keccak256 hash of a bytestring.\n\t/// @param value The bytestring to hash\n\t/// @return The hash of the specified value\n\t/// @dev `>> 8` makes sure that the result is included in our field\n\tfunction hashToField(bytes memory value) internal pure returns (uint256) {\n\t\treturn uint256(keccak256(abi.encodePacked(value))) >> 8;\n\t}\n}\n"
+    },
+    "contracts/world_coin/WorldcoinVerification.sol": {
+      "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.10;\n\nimport { ByteHasher } from \"../utilities/ByteHasher.sol\";\nimport { IWorldID } from \"../interfaces/IWorldID.sol\";\n\ncontract WorldCoinVerification {\n\tusing ByteHasher for bytes;\n\n\t/// @notice Thrown when attempting to reuse a nullifier\n\terror DuplicateNullifier(uint256 nullifierHash);\n\n\t/// @dev The World ID instance that will be used for verifying proofs\n\tIWorldID internal immutable worldId;\n\n\t/// @dev The contract's external nullifier hash\n\tuint256 internal immutable externalNullifier;\n\n\t/// @dev The World ID group ID (always 1)\n\tuint256 internal immutable groupId = 1;\n\n\t/// @dev Whether a nullifier hash has been used already. Used to guarantee an action is only performed once by a single person\n\tmapping(uint256 => bool) internal nullifierHashes;\n\n\t/// @param nullifierHash The nullifier hash for the verified proof\n\t/// @dev A placeholder event that is emitted when a user successfully verifies with World ID\n\tevent Verified(uint256 nullifierHash);\n\n\t/// @param _worldId The WorldID router that will verify the proofs\n\t/// @param _appId The World ID app ID\n\t/// @param _actionId The World ID action ID\n\tconstructor(IWorldID _worldId, string memory _appId, string memory _actionId) {\n\t\tworldId = _worldId;\n\t\texternalNullifier = abi.encodePacked(abi.encodePacked(_appId).hashToField(), _actionId).hashToField();\n\t}\n\n\t/// @param signal An arbitrary input from the user, usually the user's wallet address (check README for further details)\n\t/// @param root The root of the Merkle tree (returned by the JS widget).\n\t/// @param nullifierHash The nullifier hash for this proof, preventing double signaling (returned by the JS widget).\n\t/// @param proof The zero-knowledge proof that demonstrates the claimer is registered with World ID (returned by the JS widget).\n\t/// @dev Feel free to rename this method however you want! We've used `claim`, `verify` or `execute` in the past.\n\tfunction verifyAndExecute(address signal, uint256 root, uint256 nullifierHash, uint256[8] calldata proof) public {\n\t\t// First, we make sure this person hasn't done this before\n\t\tif (nullifierHashes[nullifierHash]) revert DuplicateNullifier(nullifierHash);\n\n\t\t// We now verify the provided proof is valid and the user is verified by World ID\n\t\tworldId.verifyProof(\n\t\t\troot,\n\t\t\tgroupId,\n\t\t\tabi.encodePacked(signal).hashToField(),\n\t\t\tnullifierHash,\n\t\t\texternalNullifier,\n\t\t\tproof\n\t\t);\n\n\t\t// We now record the user has done this, so they can't do it again (proof of uniqueness)\n\t\tnullifierHashes[nullifierHash] = true;\n\n\t\t// Finally, execute your logic here, for example issue a token, NFT, etc...\n\t\t// Make sure to emit some kind of event afterwards!\n\n\t\temit Verified(nullifierHash);\n\t}\n}"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

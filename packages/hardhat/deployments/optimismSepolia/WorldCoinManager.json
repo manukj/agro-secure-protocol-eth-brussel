@@ -1,0 +1,194 @@
+{
+  "address": "0x3A720e5d30b8307268e8FbC4BEdA514c43B23D6A",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract WorldCoinVerification",
+          "name": "_worldCoinVerification",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "UserRegistered",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "registeredUsers",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "signal",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "root",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nullifierHash",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256[8]",
+          "name": "proof",
+          "type": "uint256[8]"
+        }
+      ],
+      "name": "verifyAndRegister",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "worldCoinVerification",
+      "outputs": [
+        {
+          "internalType": "contract WorldCoinVerification",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x56dcd3be0645ba18e9b45fd9d379c37da9b6134918e08df9571a42cb08a6cf7e",
+  "receipt": {
+    "to": null,
+    "from": "0x4d0A84C61C22c26a2513Cd81079A26Ef3C47Fb79",
+    "contractAddress": "0x3A720e5d30b8307268e8FbC4BEdA514c43B23D6A",
+    "transactionIndex": 3,
+    "gasUsed": "218518",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xc70d8f423aba21e16e3eb7d9adae8462a92e1f035f924c2d2e656903a6ef2ab4",
+    "transactionHash": "0x56dcd3be0645ba18e9b45fd9d379c37da9b6134918e08df9571a42cb08a6cf7e",
+    "logs": [],
+    "blockNumber": 14561307,
+    "cumulativeGasUsed": "3500152",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x303265791D01DFBacf88547022ba015b0B777694"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "7fee5af48f3ca2c8a0da819e27c4a17c",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"contract WorldCoinVerification\",\"name\":\"_worldCoinVerification\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"UserRegistered\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"registeredUsers\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"signal\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"root\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nullifierHash\",\"type\":\"uint256\"},{\"internalType\":\"uint256[8]\",\"name\":\"proof\",\"type\":\"uint256[8]\"}],\"name\":\"verifyAndRegister\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"worldCoinVerification\",\"outputs\":[{\"internalType\":\"contract WorldCoinVerification\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"events\":{\"UserRegistered(address)\":{\"details\":\"Event emitted when a user is registered\"}},\"kind\":\"dev\",\"methods\":{\"constructor\":{\"params\":{\"_worldCoinVerification\":\"The address of the deployed WorldCoinVerification contract\"}},\"verifyAndRegister(address,uint256,uint256,uint256[8])\":{\"params\":{\"nullifierHash\":\"The nullifier hash for this proof, preventing double signaling (returned by the JS widget)\",\"proof\":\"The zero-knowledge proof that demonstrates the claimer is registered with World ID (returned by the JS widget)\",\"root\":\"The root of the Merkle tree (returned by the JS widget)\",\"signal\":\"An arbitrary input from the user, usually the user's wallet address (check README for further details)\"}}},\"stateVariables\":{\"registeredUsers\":{\"details\":\"Mapping to keep track of registered users\"},\"worldCoinVerification\":{\"details\":\"The WorldCoinVerification contract instance\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/world_coin/WorldCoinManager.sol\":\"WorldCoinManager\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/WorldcoinVerification.sol\":{\"content\":\"// SPDX-License-Identifier: UNLICENSED\\npragma solidity ^0.8.10;\\n\\nimport { ByteHasher } from \\\"./utilities/ByteHasher.sol\\\";\\nimport { IWorldID } from \\\"./interfaces/IWorldID.sol\\\";\\n\\ncontract WorldCoinVerification {\\n\\tusing ByteHasher for bytes;\\n\\n\\t/// @notice Thrown when attempting to reuse a nullifier\\n\\terror DuplicateNullifier(uint256 nullifierHash);\\n\\n\\t/// @dev The World ID instance that will be used for verifying proofs\\n\\tIWorldID internal immutable worldId;\\n\\n\\t/// @dev The contract's external nullifier hash\\n\\tuint256 internal immutable externalNullifier;\\n\\n\\t/// @dev The World ID group ID (always 1)\\n\\tuint256 internal immutable groupId = 1;\\n\\n\\t/// @dev Whether a nullifier hash has been used already. Used to guarantee an action is only performed once by a single person\\n\\tmapping(uint256 => bool) internal nullifierHashes;\\n\\n\\t/// @param nullifierHash The nullifier hash for the verified proof\\n\\t/// @dev A placeholder event that is emitted when a user successfully verifies with World ID\\n\\tevent Verified(uint256 nullifierHash);\\n\\n\\t/// @param _worldId The WorldID router that will verify the proofs\\n\\t/// @param _appId The World ID app ID\\n\\t/// @param _actionId The World ID action ID\\n\\tconstructor(IWorldID _worldId, string memory _appId, string memory _actionId) {\\n\\t\\tworldId = _worldId;\\n\\t\\texternalNullifier = abi.encodePacked(abi.encodePacked(_appId).hashToField(), _actionId).hashToField();\\n\\t}\\n\\n\\t/// @param signal An arbitrary input from the user, usually the user's wallet address (check README for further details)\\n\\t/// @param root The root of the Merkle tree (returned by the JS widget).\\n\\t/// @param nullifierHash The nullifier hash for this proof, preventing double signaling (returned by the JS widget).\\n\\t/// @param proof The zero-knowledge proof that demonstrates the claimer is registered with World ID (returned by the JS widget).\\n\\t/// @dev Feel free to rename this method however you want! We've used `claim`, `verify` or `execute` in the past.\\n\\tfunction verifyAndExecute(address signal, uint256 root, uint256 nullifierHash, uint256[8] calldata proof) public {\\n\\t\\t// First, we make sure this person hasn't done this before\\n\\t\\tif (nullifierHashes[nullifierHash]) revert DuplicateNullifier(nullifierHash);\\n\\n\\t\\t// We now verify the provided proof is valid and the user is verified by World ID\\n\\t\\tworldId.verifyProof(\\n\\t\\t\\troot,\\n\\t\\t\\tgroupId,\\n\\t\\t\\tabi.encodePacked(signal).hashToField(),\\n\\t\\t\\tnullifierHash,\\n\\t\\t\\texternalNullifier,\\n\\t\\t\\tproof\\n\\t\\t);\\n\\n\\t\\t// We now record the user has done this, so they can't do it again (proof of uniqueness)\\n\\t\\tnullifierHashes[nullifierHash] = true;\\n\\n\\t\\t// Finally, execute your logic here, for example issue a token, NFT, etc...\\n\\t\\t// Make sure to emit some kind of event afterwards!\\n\\n\\t\\temit Verified(nullifierHash);\\n\\t}\\n}\",\"keccak256\":\"0x692f1967226c6700bbf89c379d712e95e41c3a9cac3ca7e68ac443dca5cc0df4\",\"license\":\"UNLICENSED\"},\"contracts/interfaces/IWorldID.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\npragma solidity ^0.8.10;\\n\\ninterface IWorldID {\\n\\t/// @notice Reverts if the zero-knowledge proof is invalid.\\n\\t/// @param root The of the Merkle tree\\n\\t/// @param groupId The id of the Semaphore group\\n\\t/// @param signalHash A keccak256 hash of the Semaphore signal\\n\\t/// @param nullifierHash The nullifier hash\\n\\t/// @param externalNullifierHash A keccak256 hash of the external nullifier\\n\\t/// @param proof The zero-knowledge proof\\n\\t/// @dev  Note that a double-signaling check is not included here, and should be carried by the caller.\\n\\tfunction verifyProof(\\n\\t\\tuint256 root,\\n\\t\\tuint256 groupId,\\n\\t\\tuint256 signalHash,\\n\\t\\tuint256 nullifierHash,\\n\\t\\tuint256 externalNullifierHash,\\n\\t\\tuint256[8] calldata proof\\n\\t) external view;\\n}\\n\",\"keccak256\":\"0x3c54b39a33ec54a982a75826e4f75bc0dbf28ad7b22bcb7c8558557edf1fa1ef\",\"license\":\"MIT\"},\"contracts/utilities/ByteHasher.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.10;\\n\\nlibrary ByteHasher {\\n\\t/// @dev Creates a keccak256 hash of a bytestring.\\n\\t/// @param value The bytestring to hash\\n\\t/// @return The hash of the specified value\\n\\t/// @dev `>> 8` makes sure that the result is included in our field\\n\\tfunction hashToField(bytes memory value) internal pure returns (uint256) {\\n\\t\\treturn uint256(keccak256(abi.encodePacked(value))) >> 8;\\n\\t}\\n}\\n\",\"keccak256\":\"0x244f7f162ddc2bf71d37d3753d975ce89ff9a44f1181fda2774eb0f58c625330\",\"license\":\"MIT\"},\"contracts/world_coin/WorldCoinManager.sol\":{\"content\":\"// SPDX-License-Identifier: UNLICENSED\\npragma solidity ^0.8.10;\\n\\nimport { WorldCoinVerification } from \\\"../WorldcoinVerification.sol\\\";\\n\\n\\ncontract WorldCoinManager {\\n\\t/// @dev The WorldCoinVerification contract instance\\n\\tWorldCoinVerification public worldCoinVerification;\\n\\n\\t/// @dev Mapping to keep track of registered users\\n\\tmapping(address => bool) public registeredUsers;\\n\\n\\t/// @dev Event emitted when a user is registered\\n\\tevent UserRegistered(address indexed user);\\n\\n\\t/// @param _worldCoinVerification The address of the deployed WorldCoinVerification contract\\n\\tconstructor(WorldCoinVerification _worldCoinVerification) {\\n\\t\\tworldCoinVerification = _worldCoinVerification;\\n\\t}\\n\\n\\t/// @param signal An arbitrary input from the user, usually the user's wallet address (check README for further details)\\n\\t/// @param root The root of the Merkle tree (returned by the JS widget)\\n\\t/// @param nullifierHash The nullifier hash for this proof, preventing double signaling (returned by the JS widget)\\n\\t/// @param proof The zero-knowledge proof that demonstrates the claimer is registered with World ID (returned by the JS widget)\\n\\tfunction verifyAndRegister(\\n\\t\\taddress signal,\\n\\t\\tuint256 root,\\n\\t\\tuint256 nullifierHash,\\n\\t\\tuint256[8] calldata proof\\n\\t) public {\\n\\t\\t// Perform verification using the WorldCoinVerification contract\\n\\t\\tworldCoinVerification.verifyAndExecute(\\n\\t\\t\\tsignal,\\n\\t\\t\\troot,\\n\\t\\t\\tnullifierHash,\\n\\t\\t\\tproof\\n\\t\\t);\\n\\n\\t\\t// Register the user if they haven't been registered yet\\n\\t\\tif (!registeredUsers[signal]) {\\n\\t\\t\\tregisteredUsers[signal] = true;\\n\\t\\t\\temit UserRegistered(signal);\\n\\t\\t}\\n\\t}\\n}\\n\",\"keccak256\":\"0x94353808c8e35480a3d4af4786c9f1f1aaf2af035ffd47019ec05f9b4c97d255\",\"license\":\"UNLICENSED\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060405161031f38038061031f83398101604081905261002f91610054565b600080546001600160a01b0319166001600160a01b0392909216919091179055610084565b60006020828403121561006657600080fd5b81516001600160a01b038116811461007d57600080fd5b9392505050565b61028c806100936000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c80630e50cee514610046578063542f75c21461007e5780637b9153c4146100a9575b600080fd5b6100696100543660046101b5565b60016020526000908152604090205460ff1681565b60405190151581526020015b60405180910390f35b600054610091906001600160a01b031681565b6040516001600160a01b039091168152602001610075565b6100bc6100b73660046101d7565b6100be565b005b60005460405163e9b7055360e01b81526001600160a01b039091169063e9b70553906100f4908790879087908790600401610225565b600060405180830381600087803b15801561010e57600080fd5b505af1158015610122573d6000803e3d6000fd5b505050506001600160a01b03841660009081526001602052604090205460ff16610193576001600160a01b0384166000818152600160208190526040808320805460ff1916909217909155517f54db7a5cb4735e1aac1f53db512d3390390bb6637bd30ad4bf9fc98667d9b9b99190a25b50505050565b80356001600160a01b03811681146101b057600080fd5b919050565b6000602082840312156101c757600080fd5b6101d082610199565b9392505050565b6000806000806101608086880312156101ef57600080fd5b6101f886610199565b9450602086013593506040860135925086818701111561021757600080fd5b509295919450926060019150565b6001600160a01b0385168152602081018490526040810183905261016081016101008360608401379594505050505056fea26469706673582212201041cfaa4e881f95067a73016d07f47780f5098158a58a2d93a0080b8f7350c664736f6c63430008130033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c80630e50cee514610046578063542f75c21461007e5780637b9153c4146100a9575b600080fd5b6100696100543660046101b5565b60016020526000908152604090205460ff1681565b60405190151581526020015b60405180910390f35b600054610091906001600160a01b031681565b6040516001600160a01b039091168152602001610075565b6100bc6100b73660046101d7565b6100be565b005b60005460405163e9b7055360e01b81526001600160a01b039091169063e9b70553906100f4908790879087908790600401610225565b600060405180830381600087803b15801561010e57600080fd5b505af1158015610122573d6000803e3d6000fd5b505050506001600160a01b03841660009081526001602052604090205460ff16610193576001600160a01b0384166000818152600160208190526040808320805460ff1916909217909155517f54db7a5cb4735e1aac1f53db512d3390390bb6637bd30ad4bf9fc98667d9b9b99190a25b50505050565b80356001600160a01b03811681146101b057600080fd5b919050565b6000602082840312156101c757600080fd5b6101d082610199565b9392505050565b6000806000806101608086880312156101ef57600080fd5b6101f886610199565b9450602086013593506040860135925086818701111561021757600080fd5b509295919450926060019150565b6001600160a01b0385168152602081018490526040810183905261016081016101008360608401379594505050505056fea26469706673582212201041cfaa4e881f95067a73016d07f47780f5098158a58a2d93a0080b8f7350c664736f6c63430008130033",
+  "devdoc": {
+    "events": {
+      "UserRegistered(address)": {
+        "details": "Event emitted when a user is registered"
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "constructor": {
+        "params": {
+          "_worldCoinVerification": "The address of the deployed WorldCoinVerification contract"
+        }
+      },
+      "verifyAndRegister(address,uint256,uint256,uint256[8])": {
+        "params": {
+          "nullifierHash": "The nullifier hash for this proof, preventing double signaling (returned by the JS widget)",
+          "proof": "The zero-knowledge proof that demonstrates the claimer is registered with World ID (returned by the JS widget)",
+          "root": "The root of the Merkle tree (returned by the JS widget)",
+          "signal": "An arbitrary input from the user, usually the user's wallet address (check README for further details)"
+        }
+      }
+    },
+    "stateVariables": {
+      "registeredUsers": {
+        "details": "Mapping to keep track of registered users"
+      },
+      "worldCoinVerification": {
+        "details": "The WorldCoinVerification contract instance"
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 168,
+        "contract": "contracts/world_coin/WorldCoinManager.sol:WorldCoinManager",
+        "label": "worldCoinVerification",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_contract(WorldCoinVerification)115"
+      },
+      {
+        "astId": 173,
+        "contract": "contracts/world_coin/WorldCoinManager.sol:WorldCoinManager",
+        "label": "registeredUsers",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_address,t_bool)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_contract(WorldCoinVerification)115": {
+        "encoding": "inplace",
+        "label": "contract WorldCoinVerification",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_address,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      }
+    }
+  }
+}

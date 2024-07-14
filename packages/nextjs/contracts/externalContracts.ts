@@ -606,6 +606,173 @@ const externalContracts = {
         },
       ],
     },
+    WorldCoinVerification: {
+      address: "0x303265791D01DFBacf88547022ba015b0B777694",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "contract IWorldID",
+              name: "_worldId",
+              type: "address",
+            },
+            {
+              internalType: "string",
+              name: "_appId",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "_actionId",
+              type: "string",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "nullifierHash",
+              type: "uint256",
+            },
+          ],
+          name: "DuplicateNullifier",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "nullifierHash",
+              type: "uint256",
+            },
+          ],
+          name: "Verified",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "signal",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "root",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "nullifierHash",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[8]",
+              name: "proof",
+              type: "uint256[8]",
+            },
+          ],
+          name: "verifyAndExecute",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+    },
+    WorldCoinManager: {
+      address: "0x3A720e5d30b8307268e8FbC4BEdA514c43B23D6A",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "contract WorldCoinVerification",
+              name: "_worldCoinVerification",
+              type: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "UserRegistered",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          name: "registeredUsers",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "signal",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "root",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "nullifierHash",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[8]",
+              name: "proof",
+              type: "uint256[8]",
+            },
+          ],
+          name: "verifyAndRegister",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "worldCoinVerification",
+          outputs: [
+            {
+              internalType: "contract WorldCoinVerification",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+    },
   },
 } as const;
 

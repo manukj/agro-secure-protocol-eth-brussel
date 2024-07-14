@@ -1,0 +1,191 @@
+{
+  "address": "0x303265791D01DFBacf88547022ba015b0B777694",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract IWorldID",
+          "name": "_worldId",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "_appId",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_actionId",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "nullifierHash",
+          "type": "uint256"
+        }
+      ],
+      "name": "DuplicateNullifier",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "nullifierHash",
+          "type": "uint256"
+        }
+      ],
+      "name": "Verified",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "signal",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "root",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nullifierHash",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256[8]",
+          "name": "proof",
+          "type": "uint256[8]"
+        }
+      ],
+      "name": "verifyAndExecute",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x36a06d2e6eb76f067b417551045ce397f0483661b3b6f177a6cc71839d7cb657",
+  "receipt": {
+    "to": null,
+    "from": "0x4d0A84C61C22c26a2513Cd81079A26Ef3C47Fb79",
+    "contractAddress": "0x303265791D01DFBacf88547022ba015b0B777694",
+    "transactionIndex": 3,
+    "gasUsed": "233758",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x2b01c532684b10c1470abacc73b82b9f56370802630a2e5a967741b01a77a3ce",
+    "transactionHash": "0x36a06d2e6eb76f067b417551045ce397f0483661b3b6f177a6cc71839d7cb657",
+    "logs": [],
+    "blockNumber": 14558014,
+    "cumulativeGasUsed": "1766916",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x11cA3127182f7583EfC416a8771BD4d11Fae4334",
+    "app_staging_13295216d369bb0e6b076e5a3218b16b",
+    "agri"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "97380aa809ffbcddb27b7c02de48a6dc",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"contract IWorldID\",\"name\":\"_worldId\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_appId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_actionId\",\"type\":\"string\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"nullifierHash\",\"type\":\"uint256\"}],\"name\":\"DuplicateNullifier\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"nullifierHash\",\"type\":\"uint256\"}],\"name\":\"Verified\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"signal\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"root\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"nullifierHash\",\"type\":\"uint256\"},{\"internalType\":\"uint256[8]\",\"name\":\"proof\",\"type\":\"uint256[8]\"}],\"name\":\"verifyAndExecute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"events\":{\"Verified(uint256)\":{\"details\":\"A placeholder event that is emitted when a user successfully verifies with World ID\",\"params\":{\"nullifierHash\":\"The nullifier hash for the verified proof\"}}},\"kind\":\"dev\",\"methods\":{\"constructor\":{\"params\":{\"_actionId\":\"The World ID action ID\",\"_appId\":\"The World ID app ID\",\"_worldId\":\"The WorldID router that will verify the proofs\"}},\"verifyAndExecute(address,uint256,uint256,uint256[8])\":{\"details\":\"Feel free to rename this method however you want! We've used `claim`, `verify` or `execute` in the past.\",\"params\":{\"nullifierHash\":\"The nullifier hash for this proof, preventing double signaling (returned by the JS widget).\",\"proof\":\"The zero-knowledge proof that demonstrates the claimer is registered with World ID (returned by the JS widget).\",\"root\":\"The root of the Merkle tree (returned by the JS widget).\",\"signal\":\"An arbitrary input from the user, usually the user's wallet address (check README for further details)\"}}},\"stateVariables\":{\"externalNullifier\":{\"details\":\"The contract's external nullifier hash\"},\"groupId\":{\"details\":\"The World ID group ID (always 1)\"},\"nullifierHashes\":{\"details\":\"Whether a nullifier hash has been used already. Used to guarantee an action is only performed once by a single person\"},\"worldId\":{\"details\":\"The World ID instance that will be used for verifying proofs\"}},\"version\":1},\"userdoc\":{\"errors\":{\"DuplicateNullifier(uint256)\":[{\"notice\":\"Thrown when attempting to reuse a nullifier\"}]},\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/world_coin/WorldcoinVerification.sol\":\"WorldCoinVerification\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/interfaces/IWorldID.sol\":{\"content\":\"//SPDX-License-Identifier: MIT\\npragma solidity ^0.8.10;\\n\\ninterface IWorldID {\\n\\t/// @notice Reverts if the zero-knowledge proof is invalid.\\n\\t/// @param root The of the Merkle tree\\n\\t/// @param groupId The id of the Semaphore group\\n\\t/// @param signalHash A keccak256 hash of the Semaphore signal\\n\\t/// @param nullifierHash The nullifier hash\\n\\t/// @param externalNullifierHash A keccak256 hash of the external nullifier\\n\\t/// @param proof The zero-knowledge proof\\n\\t/// @dev  Note that a double-signaling check is not included here, and should be carried by the caller.\\n\\tfunction verifyProof(\\n\\t\\tuint256 root,\\n\\t\\tuint256 groupId,\\n\\t\\tuint256 signalHash,\\n\\t\\tuint256 nullifierHash,\\n\\t\\tuint256 externalNullifierHash,\\n\\t\\tuint256[8] calldata proof\\n\\t) external view;\\n}\\n\",\"keccak256\":\"0x3c54b39a33ec54a982a75826e4f75bc0dbf28ad7b22bcb7c8558557edf1fa1ef\",\"license\":\"MIT\"},\"contracts/utilities/ByteHasher.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.10;\\n\\nlibrary ByteHasher {\\n\\t/// @dev Creates a keccak256 hash of a bytestring.\\n\\t/// @param value The bytestring to hash\\n\\t/// @return The hash of the specified value\\n\\t/// @dev `>> 8` makes sure that the result is included in our field\\n\\tfunction hashToField(bytes memory value) internal pure returns (uint256) {\\n\\t\\treturn uint256(keccak256(abi.encodePacked(value))) >> 8;\\n\\t}\\n}\\n\",\"keccak256\":\"0x244f7f162ddc2bf71d37d3753d975ce89ff9a44f1181fda2774eb0f58c625330\",\"license\":\"MIT\"},\"contracts/world_coin/WorldcoinVerification.sol\":{\"content\":\"// SPDX-License-Identifier: UNLICENSED\\npragma solidity ^0.8.10;\\n\\nimport { ByteHasher } from \\\"../utilities/ByteHasher.sol\\\";\\nimport { IWorldID } from \\\"../interfaces/IWorldID.sol\\\";\\n\\ncontract WorldCoinVerification {\\n\\tusing ByteHasher for bytes;\\n\\n\\t/// @notice Thrown when attempting to reuse a nullifier\\n\\terror DuplicateNullifier(uint256 nullifierHash);\\n\\n\\t/// @dev The World ID instance that will be used for verifying proofs\\n\\tIWorldID internal immutable worldId;\\n\\n\\t/// @dev The contract's external nullifier hash\\n\\tuint256 internal immutable externalNullifier;\\n\\n\\t/// @dev The World ID group ID (always 1)\\n\\tuint256 internal immutable groupId = 1;\\n\\n\\t/// @dev Whether a nullifier hash has been used already. Used to guarantee an action is only performed once by a single person\\n\\tmapping(uint256 => bool) internal nullifierHashes;\\n\\n\\t/// @param nullifierHash The nullifier hash for the verified proof\\n\\t/// @dev A placeholder event that is emitted when a user successfully verifies with World ID\\n\\tevent Verified(uint256 nullifierHash);\\n\\n\\t/// @param _worldId The WorldID router that will verify the proofs\\n\\t/// @param _appId The World ID app ID\\n\\t/// @param _actionId The World ID action ID\\n\\tconstructor(IWorldID _worldId, string memory _appId, string memory _actionId) {\\n\\t\\tworldId = _worldId;\\n\\t\\texternalNullifier = abi.encodePacked(abi.encodePacked(_appId).hashToField(), _actionId).hashToField();\\n\\t}\\n\\n\\t/// @param signal An arbitrary input from the user, usually the user's wallet address (check README for further details)\\n\\t/// @param root The root of the Merkle tree (returned by the JS widget).\\n\\t/// @param nullifierHash The nullifier hash for this proof, preventing double signaling (returned by the JS widget).\\n\\t/// @param proof The zero-knowledge proof that demonstrates the claimer is registered with World ID (returned by the JS widget).\\n\\t/// @dev Feel free to rename this method however you want! We've used `claim`, `verify` or `execute` in the past.\\n\\tfunction verifyAndExecute(address signal, uint256 root, uint256 nullifierHash, uint256[8] calldata proof) public {\\n\\t\\t// First, we make sure this person hasn't done this before\\n\\t\\tif (nullifierHashes[nullifierHash]) revert DuplicateNullifier(nullifierHash);\\n\\n\\t\\t// We now verify the provided proof is valid and the user is verified by World ID\\n\\t\\tworldId.verifyProof(\\n\\t\\t\\troot,\\n\\t\\t\\tgroupId,\\n\\t\\t\\tabi.encodePacked(signal).hashToField(),\\n\\t\\t\\tnullifierHash,\\n\\t\\t\\texternalNullifier,\\n\\t\\t\\tproof\\n\\t\\t);\\n\\n\\t\\t// We now record the user has done this, so they can't do it again (proof of uniqueness)\\n\\t\\tnullifierHashes[nullifierHash] = true;\\n\\n\\t\\t// Finally, execute your logic here, for example issue a token, NFT, etc...\\n\\t\\t// Make sure to emit some kind of event afterwards!\\n\\n\\t\\temit Verified(nullifierHash);\\n\\t}\\n}\",\"keccak256\":\"0x3bb5315564462928db7276954cf39e838b67b41640951ef73d36b70a4cf0f6fd\",\"license\":\"UNLICENSED\"}},\"version\":1}",
+  "bytecode": "0x60e0604052600160c05234801561001557600080fd5b5060405161057c38038061057c83398101604081905261003491610183565b6001600160a01b0383166080526040516100819061006f9061005a908590602001610205565b60408051601f1981840301815291905261008d565b8260405160200161005a929190610221565b60a05250610247915050565b60006008826040516020016100a29190610205565b60408051601f198184030181529190528051602090910120901c92915050565b634e487b7160e01b600052604160045260246000fd5b60005b838110156100f35781810151838201526020016100db565b50506000910152565b600082601f83011261010d57600080fd5b81516001600160401b0380821115610127576101276100c2565b604051601f8301601f19908116603f0116810190828211818310171561014f5761014f6100c2565b8160405283815286602085880101111561016857600080fd5b6101798460208301602089016100d8565b9695505050505050565b60008060006060848603121561019857600080fd5b83516001600160a01b03811681146101af57600080fd5b60208501519093506001600160401b03808211156101cc57600080fd5b6101d8878388016100fc565b935060408601519150808211156101ee57600080fd5b506101fb868287016100fc565b9150509250925092565b600082516102178184602087016100d8565b9190910192915050565b828152600082516102398160208501602087016100d8565b919091016020019392505050565b60805160a05160c051610308610274600039600060ae0152600061011001526000607e01526103086000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c8063e9b7055314610030575b600080fd5b61004361003e36600461020f565b610045565b005b60008281526020819052604090205460ff161561007c57604051633c7fd51360e11b81526004810183905260240160405180910390fd5b7f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316633bc778e3847f000000000000000000000000000000000000000000000000000000000000000061010d886040516020016100f9919060609190911b6bffffffffffffffffffffffff1916815260140190565b6040516020818303038152906040526101da565b867f0000000000000000000000000000000000000000000000000000000000000000876040518763ffffffff1660e01b81526004016101519695949392919061026b565b60006040518083038186803b15801561016957600080fd5b505afa15801561017d573d6000803e3d6000fd5b50505060008381526020819052604090819020805460ff19166001179055517ff786e7f77ede00a02a5464f8f0555798f42ba99a4a920ef2778db8d75e4656f791506101cc9084815260200190565b60405180910390a150505050565b60006008826040516020016101ef91906102a3565b60408051601f198184030181529190528051602090910120901c92915050565b60008060008061016080868803121561022757600080fd5b85356001600160a01b038116811461023e57600080fd5b9450602086013593506040860135925080860187101561025d57600080fd5b509295919450926060019150565b60006101a0820190508782528660208301528560408301528460608301528360808301526101008360a0840137979650505050505050565b6000825160005b818110156102c457602081860181015185830152016102aa565b50600092019182525091905056fea2646970667358221220f96e4f1890799351af727819f13dc167058b08d446e00f7353b7e396215365bc64736f6c63430008130033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c8063e9b7055314610030575b600080fd5b61004361003e36600461020f565b610045565b005b60008281526020819052604090205460ff161561007c57604051633c7fd51360e11b81526004810183905260240160405180910390fd5b7f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316633bc778e3847f000000000000000000000000000000000000000000000000000000000000000061010d886040516020016100f9919060609190911b6bffffffffffffffffffffffff1916815260140190565b6040516020818303038152906040526101da565b867f0000000000000000000000000000000000000000000000000000000000000000876040518763ffffffff1660e01b81526004016101519695949392919061026b565b60006040518083038186803b15801561016957600080fd5b505afa15801561017d573d6000803e3d6000fd5b50505060008381526020819052604090819020805460ff19166001179055517ff786e7f77ede00a02a5464f8f0555798f42ba99a4a920ef2778db8d75e4656f791506101cc9084815260200190565b60405180910390a150505050565b60006008826040516020016101ef91906102a3565b60408051601f198184030181529190528051602090910120901c92915050565b60008060008061016080868803121561022757600080fd5b85356001600160a01b038116811461023e57600080fd5b9450602086013593506040860135925080860187101561025d57600080fd5b509295919450926060019150565b60006101a0820190508782528660208301528560408301528460608301528360808301526101008360a0840137979650505050505050565b6000825160005b818110156102c457602081860181015185830152016102aa565b50600092019182525091905056fea2646970667358221220f96e4f1890799351af727819f13dc167058b08d446e00f7353b7e396215365bc64736f6c63430008130033",
+  "devdoc": {
+    "events": {
+      "Verified(uint256)": {
+        "details": "A placeholder event that is emitted when a user successfully verifies with World ID",
+        "params": {
+          "nullifierHash": "The nullifier hash for the verified proof"
+        }
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "constructor": {
+        "params": {
+          "_actionId": "The World ID action ID",
+          "_appId": "The World ID app ID",
+          "_worldId": "The WorldID router that will verify the proofs"
+        }
+      },
+      "verifyAndExecute(address,uint256,uint256,uint256[8])": {
+        "details": "Feel free to rename this method however you want! We've used `claim`, `verify` or `execute` in the past.",
+        "params": {
+          "nullifierHash": "The nullifier hash for this proof, preventing double signaling (returned by the JS widget).",
+          "proof": "The zero-knowledge proof that demonstrates the claimer is registered with World ID (returned by the JS widget).",
+          "root": "The root of the Merkle tree (returned by the JS widget).",
+          "signal": "An arbitrary input from the user, usually the user's wallet address (check README for further details)"
+        }
+      }
+    },
+    "stateVariables": {
+      "externalNullifier": {
+        "details": "The contract's external nullifier hash"
+      },
+      "groupId": {
+        "details": "The World ID group ID (always 1)"
+      },
+      "nullifierHashes": {
+        "details": "Whether a nullifier hash has been used already. Used to guarantee an action is only performed once by a single person"
+      },
+      "worldId": {
+        "details": "The World ID instance that will be used for verifying proofs"
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "errors": {
+      "DuplicateNullifier(uint256)": [
+        {
+          "notice": "Thrown when attempting to reuse a nullifier"
+        }
+      ]
+    },
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 74,
+        "contract": "contracts/world_coin/WorldcoinVerification.sol:WorldCoinVerification",
+        "label": "nullifierHashes",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_uint256,t_bool)"
+      }
+    ],
+    "types": {
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_uint256,t_bool)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => bool)",
+        "numberOfBytes": "32",
+        "value": "t_bool"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.10;
 
-import { ByteHasher } from "../utilities/ByteHasher.sol";
-import { IWorldID } from "../interfaces/IWorldID.sol";
+import { ByteHasher } from "./utilities/ByteHasher.sol";
+import { IWorldID } from "./interfaces/IWorldID.sol";
 
 contract WorldCoinVerification {
 	using ByteHasher for bytes;
