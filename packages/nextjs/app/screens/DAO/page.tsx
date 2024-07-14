@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import ConnectWallet from "../login/components/connect_wallet";
 import WorldcoinVerificationDialog from "../login/components/worldid_verification_dialog";
 import ButtonComponent from "./components/button";
@@ -9,6 +10,7 @@ import { useAccount } from "wagmi";
 import { useScaffoldWriteContract } from "~~/hooks/scaffold-eth";
 
 const DAO: React.FC = () => {
+  const router = useRouter();
   const { writeContractAsync: writeToApprovalAuthority } = useScaffoldWriteContract("ApprovalAuthority");
   const { address } = useAccount();
   const [step1Completed, setStep1Completed] = useState(false);
@@ -31,6 +33,7 @@ const DAO: React.FC = () => {
         value: parseEther("0.01"),
       });
       setStep3Completed(true);
+      router.push("/screens/ClaimList");
     } catch (e) {
       console.error(e);
     }
