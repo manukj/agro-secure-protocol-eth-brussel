@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/insurance_manager/InsuranceManager.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.19;\n\ncontract InsuranceManager {\n\n    struct Insured {\n        uint256 id;\n        uint256 insuranceAmount;\n        uint256 premiumPaid;\n        uint256 validityPeriod;\n        uint256 startTime;\n        bool isValid;\n        bool isClaimed;\n    }\n\n    mapping(uint256 => Insured) public insurances;\n    address public owner;\n\n    event NewInsurance(uint256 indexed id, uint256 insuranceAmount, uint256 premiumPaid, uint256 validityPeriod);\n    event InsuranceUpdated(uint256 indexed id, uint256 insuranceAmount, uint256 premiumPaid, uint256 validityPeriod);\n    event InsuranceClaimed(uint256 indexed id, uint256 insuranceAmount);\n\n    modifier onlyOwner() {\n        require(msg.sender == owner, \"Not the contract owner\");\n        _;\n    }\n\n    constructor() {\n        owner = msg.sender;\n    }\n\n    function addNewInsurance(uint256 _id, uint256 _insuranceAmount, uint256 _validityPeriod) public payable {\n        require(insurances[_id].id == 0, \"Insurance ID already exists\");\n\n        insurances[_id] = Insured({\n            id: _id,\n            insuranceAmount: _insuranceAmount,\n            premiumPaid: msg.value,\n            validityPeriod: _validityPeriod,\n            startTime: block.timestamp,\n            isValid: true,\n            isClaimed: false\n        });\n\n        emit NewInsurance(_id, _insuranceAmount, msg.value, _validityPeriod);\n    }\n\n    function getInsurance(uint256 _id) public view returns (Insured memory) {\n        require(insurances[_id].id != 0, \"Insurance not found\");\n        return insurances[_id];\n    }\n\n    function updateInsurance(uint256 _id, uint256 _insuranceAmount, uint256 _validityPeriod) public {\n        require(insurances[_id].id != 0, \"Insurance not found\");\n\n        insurances[_id].insuranceAmount = _insuranceAmount;\n        insurances[_id].validityPeriod = _validityPeriod;\n\n        emit InsuranceUpdated(_id, _insuranceAmount, insurances[_id].premiumPaid, _validityPeriod);\n    }\n\n    function checkValidity(uint256 _id) public view returns (bool) {\n        require(insurances[_id].id != 0, \"Insurance not found\");\n        Insured memory insurance = insurances[_id];\n        return insurance.isValid && (block.timestamp <= insurance.startTime + insurance.validityPeriod);\n    }\n\n    function invalidateInsurance(uint256 _id) public {\n        require(insurances[_id].id != 0, \"Insurance not found\");\n\n        insurances[_id].isValid = false;\n    }\n\n    function renewInsurance(uint256 _id, uint256 _additionalValidityPeriod) public {\n        require(insurances[_id].id != 0, \"Insurance not found\");\n        require(insurances[_id].isValid, \"Insurance is not valid\");\n\n        insurances[_id].validityPeriod += _additionalValidityPeriod;\n    }\n\n    function claimInsurance(uint256 _id) public {\n        require(insurances[_id].id != 0, \"Insurance not found\");\n        require(insurances[_id].isValid, \"Insurance is not valid\");\n        require(!insurances[_id].isClaimed, \"Insurance already claimed\");\n        require(block.timestamp <= insurances[_id].startTime + insurances[_id].validityPeriod, \"Insurance validity period has expired\");\n\n        insurances[_id].isClaimed = true;\n        insurances[_id].isValid = false;\n\n        // Logic to transfer the insurance amount to the claimant can be added here.\n        // For example: payable(msg.sender).transfer(insurances[_id].insuranceAmount);\n\n        emit InsuranceClaimed(_id, insurances[_id].insuranceAmount);\n    }\n\n    function withdraw() public onlyOwner {\n        payable(owner).transfer(address(this).balance);\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

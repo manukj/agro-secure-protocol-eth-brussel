@@ -37,13 +37,25 @@ const InsuranceDetails = () => {
 
   const getRiskFactor = async () => {
     try {
+      // const today = new Date();
+      // const year = today.getFullYear();
+      // const month = String(today.getMonth() + 1).padStart(2, "0");
+      // const day = String(today.getDate()).padStart(2, "0");
+      // const oneYearFromNow = new Date(today.setFullYear(today.getFullYear() + 1));
+      // const currentDate = `${year}-${month}-${day}`;
+      // const endDate = `${oneYearFromNow.getFullYear()}-${String(oneYearFromNow.getMonth() + 1).padStart(2, "0")}-${String(
+      //   oneYearFromNow.getDate()
+      // ).padStart(2, "0")}`;
+
       const args = [
         "YQlTRjeThZHzJkuQywBUaXUJjnxeWJOn",
         "FIPS:37",
+        // currentDate,
+        // endDate,
         "2020-01-01",
         "2020-12-31",
         "5690b6be4dbd92f1c1e62244a0785e95",
-        "London",
+        location ?? "London",
       ];
       setIsLoading(true);
       await riskFactorContract?.write.sendRequest([BigInt(217), args]);

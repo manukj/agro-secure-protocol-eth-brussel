@@ -7,11 +7,14 @@ import { useSearchParams } from "next/navigation";
 const Quotes = () => {
   const searchParams = useSearchParams();
   const riskFactor = parseInt(searchParams.get("riskFactor") || "0") / 100;
-  const baseFare = 100;
+  const baseFare = 1000;
   const baseFareWithRisk = baseFare * riskFactor + baseFare;
-  const sliverAmount = ((baseFareWithRisk / 12) * 1) / 1000; // 1 year
-  const goldAmount = ((baseFareWithRisk / 12) * 0.9 * 2) / 1000; // 2 years
-  const platinumAmount = ((baseFareWithRisk / 12) * 0.8 * 5) / 1000; // 5 years
+  const sliverAmount = ((baseFareWithRisk / 12) * 1) / 100; // 1 year
+  const goldAmount = ((baseFareWithRisk / 12) * 0.9 * 2) / 100; // 2 years
+  const platinumAmount = ((baseFareWithRisk / 12) * 0.8 * 5) / 100; // 5 years
+  const sliverInsurredAmount = baseFareWithRisk * 1;
+  const goldInsurredAmount = baseFareWithRisk * 2;
+  const platinumInsurredAmount = baseFareWithRisk * 5;
 
   // const { data: walletClient } = useWalletClient();
 
@@ -40,11 +43,11 @@ const Quotes = () => {
                 </p>
                 <div className="flex flex-row text-4xl place-items-center">
                   {" "}
-                  {sliverAmount.toFixed(2)} <p className="ml-2 text-gray-500 text-2xl"> ETH / mo</p>
+                  {sliverAmount.toFixed(2)} <p className="ml-2 text-gray-500 text-2xl"> GWEI / mo</p>
                 </div>
                 <p className="font-bold">Insurance Specifications: </p>
                 <ul>
-                  <li>Insured Amount - {sliverAmount.toFixed(2)}</li>
+                  <li>Insured Amount - {sliverInsurredAmount.toFixed(2)} Gwei</li>
                   <li>Risk Factor - {riskFactor.toFixed(2)}</li>
                 </ul>
                 <p className="font-bold">Additional Coverage: </p>
@@ -67,11 +70,11 @@ const Quotes = () => {
                 </p>
                 <div className="flex flex-row text-4xl place-items-center">
                   {" "}
-                  {goldAmount.toFixed(2)} <p className="ml-2 text-gray-500 text-2xl"> ETH / mo</p>
+                  {goldAmount.toFixed(2)} <p className="ml-2 text-gray-500 text-2xl"> GWEI / mo</p>
                 </div>
                 <p className="font-bold">Insurance Specifications: </p>
                 <ul>
-                  <li>Insured Amount - {goldAmount.toFixed(2)}</li>
+                  <li>Insured Amount - {goldInsurredAmount.toFixed(2)} Gwei</li>
                   <li>Risk Factor - {riskFactor.toFixed(2)}</li>
                 </ul>
                 <p className="font-bold">Additional Coverage: </p>
@@ -94,11 +97,11 @@ const Quotes = () => {
                 </p>
                 <div className="flex flex-row text-4xl place-items-center">
                   {" "}
-                  {platinumAmount.toFixed(2)} <p className="ml-2 text-gray-500 text-2xl"> ETH / mo</p>
+                  {platinumAmount.toFixed(2)} <p className="ml-2 text-gray-500 text-2xl"> GWEI / mo</p>
                 </div>
                 <p className="font-bold">Insurance Specifications: </p>
                 <ul>
-                  <li>Insured Amount - {platinumAmount.toFixed(2)}</li>
+                  <li>Insured Amount - {platinumInsurredAmount.toFixed(2)} GWEI</li>
                   <li>Risk Factor - {riskFactor.toFixed(2)}</li>
                 </ul>
                 <p className="font-bold">Additional Coverage: </p>

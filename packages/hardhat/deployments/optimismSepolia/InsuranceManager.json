@@ -1,0 +1,464 @@
+{
+  "address": "0x86787b859A83BBA59c1Fec17CB5dba3102CF4718",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "insuranceAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "InsuranceClaimed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "insuranceAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "premiumPaid",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "validityPeriod",
+          "type": "uint256"
+        }
+      ],
+      "name": "InsuranceUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "insuranceAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "premiumPaid",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "validityPeriod",
+          "type": "uint256"
+        }
+      ],
+      "name": "NewInsurance",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_insuranceAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_validityPeriod",
+          "type": "uint256"
+        }
+      ],
+      "name": "addNewInsurance",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "checkValidity",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "claimInsurance",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getInsurance",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "insuranceAmount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "premiumPaid",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "validityPeriod",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "startTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bool",
+              "name": "isValid",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "isClaimed",
+              "type": "bool"
+            }
+          ],
+          "internalType": "struct InsuranceManager.Insured",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "insurances",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "insuranceAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "premiumPaid",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "validityPeriod",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "startTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isValid",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "isClaimed",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "invalidateInsurance",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_additionalValidityPeriod",
+          "type": "uint256"
+        }
+      ],
+      "name": "renewInsurance",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_insuranceAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_validityPeriod",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateInsurance",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xae6b0ce0b8a0a844203a3f366f90e7ab37cd7aa37efc42e775239a1fce6b3fdd",
+  "receipt": {
+    "to": null,
+    "from": "0x4d0A84C61C22c26a2513Cd81079A26Ef3C47Fb79",
+    "contractAddress": "0x86787b859A83BBA59c1Fec17CB5dba3102CF4718",
+    "transactionIndex": 2,
+    "gasUsed": "652013",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x0b6760763d2270e56356cfb2885ec662d6f243d3d703f7bce6f0622cc45243aa",
+    "transactionHash": "0xae6b0ce0b8a0a844203a3f366f90e7ab37cd7aa37efc42e775239a1fce6b3fdd",
+    "logs": [],
+    "blockNumber": 14557340,
+    "cumulativeGasUsed": "1182435",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 2,
+  "solcInputHash": "5c973b6876155d9d7e7d5a4221709d5b",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"insuranceAmount\",\"type\":\"uint256\"}],\"name\":\"InsuranceClaimed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"insuranceAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"premiumPaid\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"validityPeriod\",\"type\":\"uint256\"}],\"name\":\"InsuranceUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"insuranceAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"premiumPaid\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"validityPeriod\",\"type\":\"uint256\"}],\"name\":\"NewInsurance\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_insuranceAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_validityPeriod\",\"type\":\"uint256\"}],\"name\":\"addNewInsurance\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"checkValidity\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"claimInsurance\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"getInsurance\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"insuranceAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"premiumPaid\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"validityPeriod\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isValid\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"isClaimed\",\"type\":\"bool\"}],\"internalType\":\"struct InsuranceManager.Insured\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"insurances\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"insuranceAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"premiumPaid\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"validityPeriod\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isValid\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"isClaimed\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"}],\"name\":\"invalidateInsurance\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_additionalValidityPeriod\",\"type\":\"uint256\"}],\"name\":\"renewInsurance\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_insuranceAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_validityPeriod\",\"type\":\"uint256\"}],\"name\":\"updateInsurance\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/insurance_manager/InsuranceManager.sol\":\"InsuranceManager\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/insurance_manager/InsuranceManager.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.19;\\n\\ncontract InsuranceManager {\\n\\n    struct Insured {\\n        uint256 id;\\n        uint256 insuranceAmount;\\n        uint256 premiumPaid;\\n        uint256 validityPeriod;\\n        uint256 startTime;\\n        bool isValid;\\n        bool isClaimed;\\n    }\\n\\n    mapping(uint256 => Insured) public insurances;\\n    address public owner;\\n\\n    event NewInsurance(uint256 indexed id, uint256 insuranceAmount, uint256 premiumPaid, uint256 validityPeriod);\\n    event InsuranceUpdated(uint256 indexed id, uint256 insuranceAmount, uint256 premiumPaid, uint256 validityPeriod);\\n    event InsuranceClaimed(uint256 indexed id, uint256 insuranceAmount);\\n\\n    modifier onlyOwner() {\\n        require(msg.sender == owner, \\\"Not the contract owner\\\");\\n        _;\\n    }\\n\\n    constructor() {\\n        owner = msg.sender;\\n    }\\n\\n    function addNewInsurance(uint256 _id, uint256 _insuranceAmount, uint256 _validityPeriod) public payable {\\n        require(insurances[_id].id == 0, \\\"Insurance ID already exists\\\");\\n\\n        insurances[_id] = Insured({\\n            id: _id,\\n            insuranceAmount: _insuranceAmount,\\n            premiumPaid: msg.value,\\n            validityPeriod: _validityPeriod,\\n            startTime: block.timestamp,\\n            isValid: true,\\n            isClaimed: false\\n        });\\n\\n        emit NewInsurance(_id, _insuranceAmount, msg.value, _validityPeriod);\\n    }\\n\\n    function getInsurance(uint256 _id) public view returns (Insured memory) {\\n        require(insurances[_id].id != 0, \\\"Insurance not found\\\");\\n        return insurances[_id];\\n    }\\n\\n    function updateInsurance(uint256 _id, uint256 _insuranceAmount, uint256 _validityPeriod) public {\\n        require(insurances[_id].id != 0, \\\"Insurance not found\\\");\\n\\n        insurances[_id].insuranceAmount = _insuranceAmount;\\n        insurances[_id].validityPeriod = _validityPeriod;\\n\\n        emit InsuranceUpdated(_id, _insuranceAmount, insurances[_id].premiumPaid, _validityPeriod);\\n    }\\n\\n    function checkValidity(uint256 _id) public view returns (bool) {\\n        require(insurances[_id].id != 0, \\\"Insurance not found\\\");\\n        Insured memory insurance = insurances[_id];\\n        return insurance.isValid && (block.timestamp <= insurance.startTime + insurance.validityPeriod);\\n    }\\n\\n    function invalidateInsurance(uint256 _id) public {\\n        require(insurances[_id].id != 0, \\\"Insurance not found\\\");\\n\\n        insurances[_id].isValid = false;\\n    }\\n\\n    function renewInsurance(uint256 _id, uint256 _additionalValidityPeriod) public {\\n        require(insurances[_id].id != 0, \\\"Insurance not found\\\");\\n        require(insurances[_id].isValid, \\\"Insurance is not valid\\\");\\n\\n        insurances[_id].validityPeriod += _additionalValidityPeriod;\\n    }\\n\\n    function claimInsurance(uint256 _id) public {\\n        require(insurances[_id].id != 0, \\\"Insurance not found\\\");\\n        require(insurances[_id].isValid, \\\"Insurance is not valid\\\");\\n        require(!insurances[_id].isClaimed, \\\"Insurance already claimed\\\");\\n        require(block.timestamp <= insurances[_id].startTime + insurances[_id].validityPeriod, \\\"Insurance validity period has expired\\\");\\n\\n        insurances[_id].isClaimed = true;\\n        insurances[_id].isValid = false;\\n\\n        // Logic to transfer the insurance amount to the claimant can be added here.\\n        // For example: payable(msg.sender).transfer(insurances[_id].insuranceAmount);\\n\\n        emit InsuranceClaimed(_id, insurances[_id].insuranceAmount);\\n    }\\n\\n    function withdraw() public onlyOwner {\\n        payable(owner).transfer(address(this).balance);\\n    }\\n}\\n\",\"keccak256\":\"0x57cb44aa2125ebbd9132e506a7b82563b25275b063f5a79214da10052d9f089b\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50600180546001600160a01b03191633179055610a6d806100326000396000f3fe6080604052600436106100915760003560e01c806377153fd01161005957806377153fd01461019a57806385fae602146101ca5780638da5cb5b14610244578063a19adaba1461027c578063f85920d81461029c57600080fd5b8063163c16a8146100965780633ccfd60b146100ab57806353934b8d146100c057806359fb49f9146100e05780635d08bf851461017a575b600080fd5b6100a96100a436600461097c565b6102bc565b005b3480156100b757600080fd5b506100a96103ff565b3480156100cc57600080fd5b506100a96100db3660046109a8565b61048e565b3480156100ec57600080fd5b5061013c6100fb3660046109a8565b600060208190529081526040902080546001820154600283015460038401546004850154600590950154939492939192909160ff8082169161010090041687565b6040805197885260208801969096529486019390935260608501919091526080840152151560a0830152151560c082015260e0015b60405180910390f35b34801561018657600080fd5b506100a96101953660046109c1565b6104d6565b3480156101a657600080fd5b506101ba6101b53660046109a8565b610587565b6040519015158152602001610171565b3480156101d657600080fd5b506101ea6101e53660046109a8565b610645565b6040516101719190600060e082019050825182526020830151602083015260408301516040830152606083015160608301526080830151608083015260a0830151151560a083015260c0830151151560c083015292915050565b34801561025057600080fd5b50600154610264906001600160a01b031681565b6040516001600160a01b039091168152602001610171565b34801561028857600080fd5b506100a961029736600461097c565b610722565b3480156102a857600080fd5b506100a96102b73660046109a8565b6107ac565b6000838152602081905260409020541561031d5760405162461bcd60e51b815260206004820152601b60248201527f496e737572616e636520494420616c726561647920657869737473000000000060448201526064015b60405180910390fd5b6040805160e081018252848152602080820185815234838501818152606085018781524260808701908152600160a08801818152600060c08a018181528e8252988190528a90209851895595519088015591516002870155516003860155516004850155905160059093018054925115156101000261ff00199415159490941661ffff1990931692909217929092179055905184917f3445689df36eabfa26fd036e806b00f941eb0c6de85a2fbb41c12332ede587e1916103f291869186909283526020830191909152604082015260600190565b60405180910390a2505050565b6001546001600160a01b031633146104525760405162461bcd60e51b81526020600482015260166024820152752737ba103a34329031b7b73a3930b1ba1037bbb732b960511b6044820152606401610314565b6001546040516001600160a01b03909116904780156108fc02916000818181858888f1935050505015801561048b573d6000803e3d6000fd5b50565b60008181526020819052604081205490036104bb5760405162461bcd60e51b8152600401610314906109e3565b6000908152602081905260409020600501805460ff19169055565b60008281526020819052604081205490036105035760405162461bcd60e51b8152600401610314906109e3565b60008281526020819052604090206005015460ff1661055d5760405162461bcd60e51b8152602060048201526016602482015275125b9cdd5c985b98d9481a5cc81b9bdd081d985b1a5960521b6044820152606401610314565b6000828152602081905260408120600301805483929061057e908490610a10565b90915550505050565b60008181526020819052604081205481036105b45760405162461bcd60e51b8152600401610314906109e3565b60008281526020818152604091829020825160e08101845281548152600182015492810192909252600281015492820192909252600382015460608201526004820154608082015260059091015460ff80821615801560a08501819052610100909304909116151560c084015261063e57508060600151816080015161063a9190610a10565b4211155b9392505050565b6106896040518060e0016040528060008152602001600081526020016000815260200160008152602001600081526020016000151581526020016000151581525090565b60008281526020819052604081205490036106b65760405162461bcd60e51b8152600401610314906109e3565b5060009081526020818152604091829020825160e08101845281548152600182015492810192909252600281015492820192909252600382015460608201526004820154608082015260059091015460ff808216151560a084015261010090910416151560c082015290565b600083815260208190526040812054900361074f5760405162461bcd60e51b8152600401610314906109e3565b6000838152602081815260409182902060018101859055600381018490556002015482518581529182015290810182905283907f927463e39ad1d0ad91bab8b30c94cce7f1b94e179c26519714f952a181a81604906060016103f2565b60008181526020819052604081205490036107d95760405162461bcd60e51b8152600401610314906109e3565b60008181526020819052604090206005015460ff166108335760405162461bcd60e51b8152602060048201526016602482015275125b9cdd5c985b98d9481a5cc81b9bdd081d985b1a5960521b6044820152606401610314565b600081815260208190526040902060050154610100900460ff161561089a5760405162461bcd60e51b815260206004820152601960248201527f496e737572616e636520616c726561647920636c61696d6564000000000000006044820152606401610314565b600081815260208190526040902060038101546004909101546108bd9190610a10565b42111561091a5760405162461bcd60e51b815260206004820152602560248201527f496e737572616e63652076616c696469747920706572696f64206861732065786044820152641c1a5c995960da1b6064820152608401610314565b6000818152602081905260409081902060058101805461ffff191661010017905560010154905182917f901ee0a32af2afa3bdb2f8df0cdb3197edca1d21293b66400ec23a5e5940bc939161097191815260200190565b60405180910390a250565b60008060006060848603121561099157600080fd5b505081359360208301359350604090920135919050565b6000602082840312156109ba57600080fd5b5035919050565b600080604083850312156109d457600080fd5b50508035926020909101359150565b602080825260139082015272125b9cdd5c985b98d9481b9bdd08199bdd5b99606a1b604082015260600190565b80820180821115610a3157634e487b7160e01b600052601160045260246000fd5b9291505056fea264697066735822122090a6177fdbef68d322d9680964556faca74cf8427af77727114dede56249566a64736f6c63430008130033",
+  "deployedBytecode": "0x6080604052600436106100915760003560e01c806377153fd01161005957806377153fd01461019a57806385fae602146101ca5780638da5cb5b14610244578063a19adaba1461027c578063f85920d81461029c57600080fd5b8063163c16a8146100965780633ccfd60b146100ab57806353934b8d146100c057806359fb49f9146100e05780635d08bf851461017a575b600080fd5b6100a96100a436600461097c565b6102bc565b005b3480156100b757600080fd5b506100a96103ff565b3480156100cc57600080fd5b506100a96100db3660046109a8565b61048e565b3480156100ec57600080fd5b5061013c6100fb3660046109a8565b600060208190529081526040902080546001820154600283015460038401546004850154600590950154939492939192909160ff8082169161010090041687565b6040805197885260208801969096529486019390935260608501919091526080840152151560a0830152151560c082015260e0015b60405180910390f35b34801561018657600080fd5b506100a96101953660046109c1565b6104d6565b3480156101a657600080fd5b506101ba6101b53660046109a8565b610587565b6040519015158152602001610171565b3480156101d657600080fd5b506101ea6101e53660046109a8565b610645565b6040516101719190600060e082019050825182526020830151602083015260408301516040830152606083015160608301526080830151608083015260a0830151151560a083015260c0830151151560c083015292915050565b34801561025057600080fd5b50600154610264906001600160a01b031681565b6040516001600160a01b039091168152602001610171565b34801561028857600080fd5b506100a961029736600461097c565b610722565b3480156102a857600080fd5b506100a96102b73660046109a8565b6107ac565b6000838152602081905260409020541561031d5760405162461bcd60e51b815260206004820152601b60248201527f496e737572616e636520494420616c726561647920657869737473000000000060448201526064015b60405180910390fd5b6040805160e081018252848152602080820185815234838501818152606085018781524260808701908152600160a08801818152600060c08a018181528e8252988190528a90209851895595519088015591516002870155516003860155516004850155905160059093018054925115156101000261ff00199415159490941661ffff1990931692909217929092179055905184917f3445689df36eabfa26fd036e806b00f941eb0c6de85a2fbb41c12332ede587e1916103f291869186909283526020830191909152604082015260600190565b60405180910390a2505050565b6001546001600160a01b031633146104525760405162461bcd60e51b81526020600482015260166024820152752737ba103a34329031b7b73a3930b1ba1037bbb732b960511b6044820152606401610314565b6001546040516001600160a01b03909116904780156108fc02916000818181858888f1935050505015801561048b573d6000803e3d6000fd5b50565b60008181526020819052604081205490036104bb5760405162461bcd60e51b8152600401610314906109e3565b6000908152602081905260409020600501805460ff19169055565b60008281526020819052604081205490036105035760405162461bcd60e51b8152600401610314906109e3565b60008281526020819052604090206005015460ff1661055d5760405162461bcd60e51b8152602060048201526016602482015275125b9cdd5c985b98d9481a5cc81b9bdd081d985b1a5960521b6044820152606401610314565b6000828152602081905260408120600301805483929061057e908490610a10565b90915550505050565b60008181526020819052604081205481036105b45760405162461bcd60e51b8152600401610314906109e3565b60008281526020818152604091829020825160e08101845281548152600182015492810192909252600281015492820192909252600382015460608201526004820154608082015260059091015460ff80821615801560a08501819052610100909304909116151560c084015261063e57508060600151816080015161063a9190610a10565b4211155b9392505050565b6106896040518060e0016040528060008152602001600081526020016000815260200160008152602001600081526020016000151581526020016000151581525090565b60008281526020819052604081205490036106b65760405162461bcd60e51b8152600401610314906109e3565b5060009081526020818152604091829020825160e08101845281548152600182015492810192909252600281015492820192909252600382015460608201526004820154608082015260059091015460ff808216151560a084015261010090910416151560c082015290565b600083815260208190526040812054900361074f5760405162461bcd60e51b8152600401610314906109e3565b6000838152602081815260409182902060018101859055600381018490556002015482518581529182015290810182905283907f927463e39ad1d0ad91bab8b30c94cce7f1b94e179c26519714f952a181a81604906060016103f2565b60008181526020819052604081205490036107d95760405162461bcd60e51b8152600401610314906109e3565b60008181526020819052604090206005015460ff166108335760405162461bcd60e51b8152602060048201526016602482015275125b9cdd5c985b98d9481a5cc81b9bdd081d985b1a5960521b6044820152606401610314565b600081815260208190526040902060050154610100900460ff161561089a5760405162461bcd60e51b815260206004820152601960248201527f496e737572616e636520616c726561647920636c61696d6564000000000000006044820152606401610314565b600081815260208190526040902060038101546004909101546108bd9190610a10565b42111561091a5760405162461bcd60e51b815260206004820152602560248201527f496e737572616e63652076616c696469747920706572696f64206861732065786044820152641c1a5c995960da1b6064820152608401610314565b6000818152602081905260409081902060058101805461ffff191661010017905560010154905182917f901ee0a32af2afa3bdb2f8df0cdb3197edca1d21293b66400ec23a5e5940bc939161097191815260200190565b60405180910390a250565b60008060006060848603121561099157600080fd5b505081359360208301359350604090920135919050565b6000602082840312156109ba57600080fd5b5035919050565b600080604083850312156109d457600080fd5b50508035926020909101359150565b602080825260139082015272125b9cdd5c985b98d9481b9bdd08199bdd5b99606a1b604082015260600190565b80820180821115610a3157634e487b7160e01b600052601160045260246000fd5b9291505056fea264697066735822122090a6177fdbef68d322d9680964556faca74cf8427af77727114dede56249566a64736f6c63430008130033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 21,
+        "contract": "contracts/insurance_manager/InsuranceManager.sol:InsuranceManager",
+        "label": "insurances",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_uint256,t_struct(Insured)16_storage)"
+      },
+      {
+        "astId": 23,
+        "contract": "contracts/insurance_manager/InsuranceManager.sol:InsuranceManager",
+        "label": "owner",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_address"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_uint256,t_struct(Insured)16_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => struct InsuranceManager.Insured)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Insured)16_storage"
+      },
+      "t_struct(Insured)16_storage": {
+        "encoding": "inplace",
+        "label": "struct InsuranceManager.Insured",
+        "members": [
+          {
+            "astId": 3,
+            "contract": "contracts/insurance_manager/InsuranceManager.sol:InsuranceManager",
+            "label": "id",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 5,
+            "contract": "contracts/insurance_manager/InsuranceManager.sol:InsuranceManager",
+            "label": "insuranceAmount",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 7,
+            "contract": "contracts/insurance_manager/InsuranceManager.sol:InsuranceManager",
+            "label": "premiumPaid",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 9,
+            "contract": "contracts/insurance_manager/InsuranceManager.sol:InsuranceManager",
+            "label": "validityPeriod",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 11,
+            "contract": "contracts/insurance_manager/InsuranceManager.sol:InsuranceManager",
+            "label": "startTime",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 13,
+            "contract": "contracts/insurance_manager/InsuranceManager.sol:InsuranceManager",
+            "label": "isValid",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_bool"
+          },
+          {
+            "astId": 15,
+            "contract": "contracts/insurance_manager/InsuranceManager.sol:InsuranceManager",
+            "label": "isClaimed",
+            "offset": 1,
+            "slot": "5",
+            "type": "t_bool"
+          }
+        ],
+        "numberOfBytes": "192"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

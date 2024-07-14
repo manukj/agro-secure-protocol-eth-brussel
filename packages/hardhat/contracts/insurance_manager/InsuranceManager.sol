@@ -13,28 +13,36 @@ contract InsuranceManager {
         bool isClaimed;
     }
 
-    mapping(uint256 => Insured) private insurances;
+    mapping(uint256 => Insured) public insurances;
+    address public owner;
 
     event NewInsurance(uint256 indexed id, uint256 insuranceAmount, uint256 premiumPaid, uint256 validityPeriod);
     event InsuranceUpdated(uint256 indexed id, uint256 insuranceAmount, uint256 premiumPaid, uint256 validityPeriod);
     event InsuranceClaimed(uint256 indexed id, uint256 insuranceAmount);
 
-    constructor() {}
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Not the contract owner");
+        _;
+    }
 
-    function addNewInsurance(uint256 _id, uint256 _insuranceAmount, uint256 _premiumPaid, uint256 _validityPeriod) public {
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function addNewInsurance(uint256 _id, uint256 _insuranceAmount, uint256 _validityPeriod) public payable {
         require(insurances[_id].id == 0, "Insurance ID already exists");
 
         insurances[_id] = Insured({
             id: _id,
             insuranceAmount: _insuranceAmount,
-            premiumPaid: _premiumPaid,
+            premiumPaid: msg.value,
             validityPeriod: _validityPeriod,
             startTime: block.timestamp,
             isValid: true,
             isClaimed: false
         });
 
-        emit NewInsurance(_id, _insuranceAmount, _premiumPaid, _validityPeriod);
+        emit NewInsurance(_id, _insuranceAmount, msg.value, _validityPeriod);
     }
 
     function getInsurance(uint256 _id) public view returns (Insured memory) {
@@ -42,14 +50,13 @@ contract InsuranceManager {
         return insurances[_id];
     }
 
-    function updateInsurance(uint256 _id, uint256 _insuranceAmount, uint256 _premiumPaid, uint256 _validityPeriod) public {
+    function updateInsurance(uint256 _id, uint256 _insuranceAmount, uint256 _validityPeriod) public {
         require(insurances[_id].id != 0, "Insurance not found");
 
         insurances[_id].insuranceAmount = _insuranceAmount;
-        insurances[_id].premiumPaid = _premiumPaid;
         insurances[_id].validityPeriod = _validityPeriod;
 
-        emit InsuranceUpdated(_id, _insuranceAmount, _premiumPaid, _validityPeriod);
+        emit InsuranceUpdated(_id, _insuranceAmount, insurances[_id].premiumPaid, _validityPeriod);
     }
 
     function checkValidity(uint256 _id) public view returns (bool) {
@@ -84,5 +91,9 @@ contract InsuranceManager {
         // For example: payable(msg.sender).transfer(insurances[_id].insuranceAmount);
 
         emit InsuranceClaimed(_id, insurances[_id].insuranceAmount);
+    }
+
+    function withdraw() public onlyOwner {
+        payable(owner).transfer(address(this).balance);
     }
 }
