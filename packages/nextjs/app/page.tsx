@@ -1,10 +1,10 @@
 "use client";
 
-import LoginScreen from "./screens/login/page";
+import ClaimList from "./screens/ClaimList/page";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
-  return <LoginScreen />;
+  return <ClaimList />;
 };
 
 export default Home;
