@@ -684,17 +684,11 @@ const externalContracts = {
         },
       ],
     },
-    WorldCoinManager: {
-      address: "0x3A720e5d30b8307268e8FbC4BEdA514c43B23D6A",
+    ApprovalAuthority: {
+      address: "0xf7047ed56f0cC75512FfB21e568dB5A490eDE6d3",
       abi: [
         {
-          inputs: [
-            {
-              internalType: "contract WorldCoinVerification",
-              name: "_worldCoinVerification",
-              type: "address",
-            },
-          ],
+          inputs: [],
           stateMutability: "nonpayable",
           type: "constructor",
         },
@@ -708,8 +702,34 @@ const externalContracts = {
               type: "address",
             },
           ],
-          name: "UserRegistered",
+          name: "AuthorizedUserAdded",
           type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "user",
+              type: "address",
+            },
+          ],
+          name: "AuthorizedUserRemoved",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_user",
+              type: "address",
+            },
+          ],
+          name: "addAuthorizedUser",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
         },
         {
           inputs: [
@@ -719,7 +739,7 @@ const externalContracts = {
               type: "address",
             },
           ],
-          name: "registeredUsers",
+          name: "authorizedUsers",
           outputs: [
             {
               internalType: "bool",
@@ -734,41 +754,65 @@ const externalContracts = {
           inputs: [
             {
               internalType: "address",
-              name: "signal",
+              name: "_user",
               type: "address",
             },
+          ],
+          name: "isAuthorizedUser",
+          outputs: [
             {
-              internalType: "uint256",
-              name: "root",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "nullifierHash",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256[8]",
-              name: "proof",
-              type: "uint256[8]",
+              internalType: "bool",
+              name: "",
+              type: "bool",
             },
           ],
-          name: "verifyAndRegister",
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "minFee",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_user",
+              type: "address",
+            },
+          ],
+          name: "removeAuthorizedUser",
           outputs: [],
           stateMutability: "nonpayable",
           type: "function",
         },
         {
           inputs: [],
-          name: "worldCoinVerification",
-          outputs: [
-            {
-              internalType: "contract WorldCoinVerification",
-              name: "",
-              type: "address",
-            },
-          ],
-          stateMutability: "view",
+          name: "withdrawFees",
+          outputs: [],
+          stateMutability: "nonpayable",
           type: "function",
         },
       ],

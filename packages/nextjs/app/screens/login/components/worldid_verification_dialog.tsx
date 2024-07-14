@@ -75,7 +75,7 @@ const WorldcoinVerificationDialog: React.FC<WorldcoinVerificationProps> = ({ app
     >
       {({ open }) => (
         <button className="btn btn-primary w-30" onClick={open}>
-          Verify that you are a Human being
+          Verify as Human
         </button>
       )}
     </IDKitWidget>
