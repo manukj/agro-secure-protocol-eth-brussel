@@ -18,7 +18,7 @@ Agro Secure Protocol is a blockchain-based insurance solution for farmers, desig
 
 ## Features
 
-- **World ID Integration**: Ensures user authenticity through biometric verification.
+- **World ID Integration**: Ensures user authenticity.
 - **Chainlink Oracles**: Provides reliable data from external sources.
 - **Risk Assessment**: Advanced algorithms for accurate risk calculation.
 - **Decentralized Claims Verification**: Multi-party authorization for claims processing.
@@ -34,29 +34,13 @@ To set up the project locally, follow these steps:
    ```
 
 2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+   
 
 3. **Compile the smart contracts:**
-   ```bash
-   npx hardhat compile
-   ```
+   
 
 4. **Deploy the contracts:**
-   ```bash
-   npx hardhat run scripts/deploy.js --network <network-name>
-   ```
-
-## Usage
-
-1. **Running Tests:**
-   ```bash
-   npx hardhat test
-   ```
-
-2. **Interacting with Contracts:**
-   Use the provided scripts in the `scripts` directory to interact with the deployed smart contracts.
+   
 
 ## Architecture
 
@@ -96,7 +80,3 @@ To set up the project locally, follow these steps:
 ## License
 
 This project is licensed under the MIT License.
-
-## Contact
-
-For more information, please contact [maintainer's name] at [email@example.com].
