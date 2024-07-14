@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import ConnectWallet from "./components/connect_wallet";
 import WorldcoinVerificationDialog from "./components/worldid_verification_dialog";
 import { useAccount } from "wagmi";
+import { useAuthContext } from "~~/contexts/AuthContext";
 
 const LoginScreen = () => {
+  const { setVerifiedAddress } = useAuthContext();
   const { address, isConnecting } = useAccount();
   const [isLoading, setIsLoading] = useState(true);
   const [isVerifiedUser, setVerifiedUser] = useState(false);
@@ -50,6 +52,7 @@ const LoginScreen = () => {
               onSuccess={result => {
                 console.log("📡 Verified", result);
                 setVerifiedUser(true);
+                setVerifiedAddress(address);
               }}
             />
           )}
